@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberShield AI — Create Account</title>
+  <link rel="stylesheet" href="css/tailwind.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css"/>
+  <script type="module" src="js/firebase-config.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js" crossorigin="anonymous"></script>
+</head>
+<body style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;">
+
+<div x-data="signupApp()" class="w-full fade-up" style="max-width:480px;">
+
+  <!-- Logo -->
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:28px;">
+    <div class="logo-box"><svg width="13" height="13" fill="#DC2626" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></div>
+    <span style="font-size:13px;font-weight:700;color:#fff;letter-spacing:0.04em;">CyberShield AI</span>
+  </div>
+
+  <!-- Success state -->
+  <div x-show="registrationSuccess" x-cloak class="auth-card" style="padding:40px 32px;text-align:center;">
+    <div style="width:60px;height:60px;background:var(--clean-dim);border:1px solid rgba(22,163,74,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+      <svg width="26" height="26" fill="none" stroke="#16A34A" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+    </div>
+    <div style="font-size:9px;font-weight:700;color:var(--clean);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Account created</div>
+    <h2 style="font-size:18px;font-weight:700;color:#fff;margin-bottom:10px;">Check your inbox</h2>
+    <p style="font-size:13px;color:var(--text-sub);line-height:1.8;margin-bottom:6px;">Verification link sent to</p>
+    <p style="font-size:12px;color:#fff;font-weight:600;margin-bottom:14px;" x-text="email"></p>
+    <p style="font-size:12px;color:var(--text-hint);line-height:1.8;margin-bottom:24px;">Click the link before signing in. Check spam if not received.</p>
+    <a href="index.html" class="btn-primary" style="text-decoration:none;">Go to Sign In</a>
+  </div>
+
+  <!-- Form state -->
+  <div x-show="!registrationSuccess" class="auth-card" style="padding:32px;">
+    <div style="margin-bottom:22px;">
+      <div style="font-size:9px;font-weight:700;color:var(--crimson);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Free account</div>
+      <h2 style="font-size:18px;font-weight:700;color:#fff;margin-bottom:6px;letter-spacing:-0.01em;">Create your account</h2>
+      <p style="font-size:13px;color:var(--text-sub);">Start scanning for threats in under two minutes.</p>
+    </div>
+
+    <div x-show="errorMessage" x-cloak class="banner banner-error" style="margin-bottom:16px;">
+      <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20" style="flex-shrink:0;margin-top:1px;"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+      <span x-text="errorMessage"></span>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div><label class="cs-label">First name</label><input x-model="firstName" type="text" placeholder="John" class="cs-input"/></div>
+        <div><label class="cs-label">Last name</label><input x-model="lastName" type="text" placeholder="Doe" class="cs-input"/></div>
+      </div>
+      <div><label class="cs-label">Username</label><input x-model="username" type="text" placeholder="johndoe123" class="cs-input"/><p class="cs-hint">Lowercase letters and numbers only.</p></div>
+      <div><label class="cs-label">Email address</label><input x-model="email" type="email" placeholder="john@company.com" class="cs-input"/></div>
+      <div><label class="cs-label">Country</label><select x-model="country" class="cs-input"><option value="" disabled selected>Select your country</option><template x-for="c in countries" :key="c"><option :value="c" x-text="c"></option></template></select></div>
+      <div>
+        <label class="cs-label">Password</label>
+        <div style="position:relative;">
+          <input x-model="password" :type="showPassword ? 'text' : 'password'" placeholder="Create a strong password" @input="check()" class="cs-input" style="padding-right:44px;" :style="password ? (allMet ? 'border-color:var(--clean)' : 'border-color:var(--crimson)') : ''"/>
+          <button @click="showPassword = !showPassword" type="button" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--text-hint);background:none;border:none;cursor:pointer;line-height:1;">
+            <svg x-show="!showPassword" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            <svg x-show="showPassword" x-cloak width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 4.411m0 0L21 21"/></svg>
+          </button>
+        </div>
+        <div class="strength-track"><div class="strength-fill" :style="`width:${strength}%;background:${strengthColor}`"></div></div>
+        <p x-show="password" style="font-size:10px;margin-top:5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;" :style="`color:${strengthColor}`" x-text="strengthLabel"></p>
+        <div x-show="password.length > 0" x-cloak class="req-box">
+          <p class="req-title">Requirements</p>
+          <template x-for="req in requirements" :key="req.label">
+            <div class="req-row" :class="req.met ? 'met' : ''">
+              <svg x-show="req.met" width="13" height="13" fill="currentColor" viewBox="0 0 20 20" style="flex-shrink:0;"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <svg x-show="!req.met" width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="flex-shrink:0;"><circle cx="12" cy="12" r="9" stroke-width="1.5"/></svg>
+              <span x-text="req.label"></span>
+            </div>
+          </template>
+        </div>
+      </div>
+      <div>
+        <label class="cs-label">Confirm password</label>
+        <div style="position:relative;">
+          <input x-model="confirmPassword" :type="showConfirm ? 'text' : 'password'" placeholder="Re-enter your password" class="cs-input" style="padding-right:44px;" :style="confirmPassword && password !== confirmPassword ? 'border-color:var(--crimson)' : ''"/>
+          <button @click="showConfirm = !showConfirm" type="button" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--text-hint);background:none;border:none;cursor:pointer;line-height:1;">
+            <svg x-show="!showConfirm" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            <svg x-show="showConfirm" x-cloak width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 4.411m0 0L21 21"/></svg>
+          </button>
+        </div>
+        <p x-show="confirmPassword && password !== confirmPassword" x-cloak style="font-size:11px;color:var(--crimson);margin-top:7px;">Passwords do not match.</p>
+      </div>
+      <button @click="register()" :disabled="isLoading || !canSubmit" class="btn-primary" style="margin-top:4px;">
+        <span x-show="!isLoading">Create account</span>
+        <span x-show="isLoading" x-cloak style="display:flex;align-items:center;justify-content:center;gap:8px;"><svg style="animation:spin 1s linear infinite;" width="15" height="15" fill="none" viewBox="0 0 24 24"><circle style="opacity:0.25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path style="opacity:0.75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/></svg>Creating account...</span>
+      </button>
+      <div class="divider">or sign up with</div>
+      <button @click="registerWithGoogle()" :disabled="googleLoading || isLoading" class="btn-ghost">
+        <span x-show="!googleLoading"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></span>
+        <span x-show="googleLoading" x-cloak><svg style="animation:spin 1s linear infinite;" width="15" height="15" fill="none" viewBox="0 0 24 24"><circle style="opacity:0.25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path style="opacity:0.75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/></svg></span>
+        <span x-show="!googleLoading">Continue with Google</span>
+        <span x-show="googleLoading" x-cloak>Signing up...</span>
+      </button>
+    </div>
+    <p style="text-align:center;font-size:13px;color:var(--text-sub);margin-top:18px;">Already have an account? <a href="index.html" style="color:var(--crimson);text-decoration:none;font-weight:600;">Sign in</a></p>
+  </div>
+
+  <div style="text-align:center;margin-top:20px;">
+    <p style="font-size:9px;color:var(--text-hint);letter-spacing:0.06em;text-transform:uppercase;">MSc Cybersecurity · University of Roehampton · 2026</p>
+  </div>
+
+  <!-- Google profile modal -->
+  <div x-show="showProfileModal" x-cloak class="modal-backdrop">
+    <div class="modal-card">
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg);border:1px solid var(--border);border-radius:4px;margin-bottom:18px;">
+        <div class="avatar" style="font-size:12px;" x-text="(googleUser?.displayName || 'G')[0]"></div>
+        <div><p style="font-size:12px;font-weight:600;color:#fff;" x-text="googleUser?.displayName || 'Google User'"></p><p style="font-size:11px;color:var(--text-sub);" x-text="googleUser?.email || ''"></p></div>
+      </div>
+      <div style="font-size:9px;font-weight:700;color:var(--crimson);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Profile setup</div>
+      <h3 style="font-size:16px;font-weight:700;color:#fff;margin-bottom:6px;">Almost there</h3>
+      <p style="font-size:13px;color:var(--text-sub);margin-bottom:18px;line-height:1.7;">Choose a username and country to complete setup.</p>
+      <div x-show="profileError" x-cloak class="banner banner-error" style="margin-bottom:14px;"><span x-text="profileError"></span></div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div><label class="cs-label">Username</label><input x-model="googleUsername" type="text" placeholder="johndoe123" class="cs-input"/><p class="cs-hint">Lowercase letters and numbers only.</p></div>
+        <div><label class="cs-label">Country</label><select x-model="googleCountry" class="cs-input"><option value="" disabled selected>Select your country</option><template x-for="c in countries" :key="c"><option :value="c" x-text="c"></option></template></select></div>
+        <button @click="saveGoogleProfile()" :disabled="profileLoading || !googleUsername.trim() || !googleCountry" class="btn-primary">
+          <span x-show="!profileLoading">Complete setup</span>
+          <span x-show="profileLoading" x-cloak style="display:flex;align-items:center;justify-content:center;gap:8px;"><svg style="animation:spin 1s linear infinite;" width="15" height="15" fill="none" viewBox="0 0 24 24"><circle style="opacity:0.25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path style="opacity:0.75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/></svg>Saving...</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

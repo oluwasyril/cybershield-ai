@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "cyber-threat-platform-12e4b"
+  },
+  "targets": {
+    "cyber-threat-platform-12e4b": {
+      "hosting": {
+        "main": [
+          "mycybershieldai"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

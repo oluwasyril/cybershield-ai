@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberShield AI — Account Action</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    .state         { display: none; }
+    .state.active  { display: block; }
+    .pw-wrap       { position: relative; }
+    .pw-wrap input { padding-right: 44px; }
+    .pw-toggle     { position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-hint);cursor:pointer;line-height:1;padding:0; }
+  </style>
+</head>
+
+<body style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 24px;">
+  <div style="width:100%;max-width:420px;">
+
+    <!-- Logo -->
+    <div style="display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:28px;">
+      <div class="logo-box"><svg width="13" height="13" fill="#DC2626" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></div>
+      <span style="font-size:13px;font-weight:700;color:#fff;letter-spacing:0.04em;">CyberShield AI</span>
+    </div>
+
+    <!-- STATE: LOADING -->
+    <div id="state-loading" class="state active auth-card" style="text-align:center;padding:40px 32px;">
+      <svg style="animation:spin 1s linear infinite;" width="30" height="30" fill="none" viewBox="0 0 24 24" style="margin:0 auto 14px;display:block;">
+        <circle style="opacity:0.15" cx="12" cy="12" r="10" stroke="#DC2626" stroke-width="3"/>
+        <path style="opacity:0.8" fill="#DC2626" d="M4 12a8 8 0 018-8v8z"/>
+      </svg>
+      <p style="font-size:10px;color:var(--text-hint);letter-spacing:0.08em;text-transform:uppercase;margin-top:14px;">Processing your request...</p>
+    </div>
+
+    <!-- STATE: VERIFY SUCCESS -->
+    <div id="state-verify-success" class="state auth-card" style="text-align:center;padding:40px 32px;">
+      <div style="width:60px;height:60px;background:var(--clean-dim);border:1px solid rgba(22,163,74,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+        <svg width="26" height="26" fill="none" stroke="#16A34A" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+      </div>
+      <div style="font-size:9px;font-weight:700;color:var(--clean);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Verification complete</div>
+      <h1 style="font-size:18px;font-weight:700;color:#fff;margin-bottom:10px;">Email Verified</h1>
+      <p style="font-size:13px;color:var(--text-sub);line-height:1.8;margin-bottom:22px;">Your CyberShield AI account is now active. Redirecting to sign in in</p>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px;margin-bottom:22px;display:inline-block;min-width:90px;">
+        <div style="font-size:42px;font-weight:800;color:#fff;line-height:1;" id="verify-countdown">10</div>
+      </div>
+      <a href="index.html" class="btn-primary" style="display:block;text-decoration:none;">Sign In Now</a>
+    </div>
+
+    <!-- STATE: RESET FORM -->
+    <div id="state-reset-form" class="state auth-card" style="padding:32px;">
+      <div style="margin-bottom:20px;">
+        <div style="font-size:9px;font-weight:700;color:var(--crimson);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Password reset</div>
+        <h1 style="font-size:18px;font-weight:700;color:#fff;margin-bottom:6px;">Set a New Password</h1>
+        <p style="font-size:13px;color:var(--text-sub);line-height:1.6;">Enter and confirm your new password below.</p>
+      </div>
+      <div id="reset-error" class="banner banner-error" style="display:none;margin-bottom:14px;">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20" style="flex-shrink:0;margin-top:1px;"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+        <span id="reset-error-text"></span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div>
+          <label class="cs-label">New password</label>
+          <div class="pw-wrap"><input id="new-pw" type="password" placeholder="Create a strong password" class="cs-input" oninput="checkPasswordStrength()"/><button class="pw-toggle" onclick="togglePw('new-pw')" type="button"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></button></div>
+          <div class="strength-track"><div class="strength-fill" id="strength-fill" style="width:0%;"></div></div>
+          <p id="strength-label" style="font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-top:5px;min-height:16px;"></p>
+          <div id="requirements" class="req-box" style="display:none;">
+            <p class="req-title">Requirements</p>
+            <div class="req-row" id="req-length"><svg class="req-x" width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="1.5"/></svg><svg class="req-check" width="13" height="13" fill="currentColor" viewBox="0 0 20 20" style="display:none;color:var(--clean);"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>At least 8 characters</span></div>
+            <div class="req-row" id="req-upper"><svg class="req-x" width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="1.5"/></svg><svg class="req-check" width="13" height="13" fill="currentColor" viewBox="0 0 20 20" style="display:none;color:var(--clean);"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>One uppercase letter (A–Z)</span></div>
+            <div class="req-row" id="req-number"><svg class="req-x" width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="1.5"/></svg><svg class="req-check" width="13" height="13" fill="currentColor" viewBox="0 0 20 20" style="display:none;color:var(--clean);"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>One number (0–9)</span></div>
+            <div class="req-row" id="req-special"><svg class="req-x" width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="1.5"/></svg><svg class="req-check" width="13" height="13" fill="currentColor" viewBox="0 0 20 20" style="display:none;color:var(--clean);"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>One special character (!@#$...)</span></div>
+          </div>
+        </div>
+        <div>
+          <label class="cs-label">Confirm new password</label>
+          <div class="pw-wrap"><input id="confirm-pw" type="password" placeholder="Re-enter new password" class="cs-input"/><button class="pw-toggle" onclick="togglePw('confirm-pw')" type="button"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></button></div>
+          <p id="match-error" style="display:none;font-size:11px;color:var(--crimson);margin-top:7px;">Passwords do not match.</p>
+        </div>
+        <button id="reset-btn" onclick="submitPasswordReset()" class="btn-primary">Set New Password</button>
+      </div>
+    </div>
+
+    <!-- STATE: RESET SUCCESS -->
+    <div id="state-reset-success" class="state auth-card" style="text-align:center;padding:40px 32px;">
+      <div style="width:60px;height:60px;background:var(--clean-dim);border:1px solid rgba(22,163,74,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+        <svg width="26" height="26" fill="none" stroke="#16A34A" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+      </div>
+      <div style="font-size:9px;font-weight:700;color:var(--clean);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Password updated</div>
+      <h1 style="font-size:18px;font-weight:700;color:#fff;margin-bottom:10px;">Reset Successful</h1>
+      <p style="font-size:13px;color:var(--text-sub);line-height:1.8;margin-bottom:22px;">Your password has been updated. Redirecting in</p>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px;margin-bottom:22px;display:inline-block;min-width:90px;">
+        <div style="font-size:42px;font-weight:800;color:#fff;line-height:1;" id="reset-countdown">10</div>
+      </div>
+      <a href="index.html" class="btn-primary" style="display:block;text-decoration:none;">Sign In Now</a>
+    </div>
+
+    <!-- STATE: ERROR -->
+    <div id="state-error" class="state auth-card" style="text-align:center;padding:40px 32px;">
+      <div style="width:60px;height:60px;background:var(--crimson-dim);border:1px solid rgba(220,38,38,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+        <svg width="26" height="26" fill="none" stroke="#DC2626" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </div>
+      <div style="font-size:9px;font-weight:700;color:var(--crimson);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Link invalid</div>
+      <h1 style="font-size:18px;font-weight:700;color:#fff;margin-bottom:10px;">Link Expired or Invalid</h1>
+      <p id="error-detail" style="font-size:13px;color:var(--text-sub);line-height:1.8;margin-bottom:24px;">This link has expired or has already been used.</p>
+      <a href="index.html" class="btn-ghost" style="display:flex;text-decoration:none;margin-bottom:10px;">Back to Sign In</a>
+      <a href="signup.html" style="display:block;text-align:center;font-size:13px;color:var(--text-sub);margin-top:12px;text-decoration:none;">Create a new account</a>
+    </div>
+
+    <div style="text-align:center;margin-top:24px;">
+      <p style="font-size:9px;color:var(--text-hint);letter-spacing:0.06em;text-transform:uppercase;">MSc Cybersecurity · University of Roehampton · 2026</p>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp }        from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+    import { getAuth, applyActionCode, checkActionCode, verifyPasswordResetCode, confirmPasswordReset, sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+
+    const firebaseConfig = {
+      apiKey           : "AIzaSyCwz8yUn3fFLBXXui7EDaxvtHahwJTJTAY",
+      authDomain       : "cyber-threat-platform-12e4b.firebaseapp.com",
+      projectId        : "cyber-threat-platform-12e4b",
+      storageBucket    : "cyber-threat-platform-12e4b.firebasestorage.app",
+      messagingSenderId: "405030971292",
+      appId            : "1:405030971292:web:24553a3c0a5db09bac4a59"
+    };
+
+    const app  = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const params     = new URLSearchParams(window.location.search);
+    const mode       = params.get('mode');
+    const actionCode = params.get('oobCode');
+
+    function showState(id) {
+      document.querySelectorAll('.state').forEach(el => el.classList.remove('active'));
+      const el = document.getElementById(id);
+      if (el) el.classList.add('active');
+    }
+
+    function startCountdown(elId, seconds, url) {
+      const el = document.getElementById(elId);
+      let n = seconds;
+      const t = setInterval(() => {
+        n--;
+        if (el) el.textContent = n;
+        if (n <= 0) { clearInterval(t); window.location.href = url; }
+      }, 1000);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!mode || !actionCode) { document.getElementById('error-detail').textContent = 'No action parameters found. Please use the link from your email.'; showState('state-error'); return; }
+      switch (mode) {
+        case 'verifyEmail':    handleVerifyEmail();    break;
+        case 'resetPassword':  handleResetPassword();  break;
+        case 'recoverEmail':   handleRecoverEmail();   break;
+        default: document.getElementById('error-detail').textContent = `Unknown action: ${mode}`; showState('state-error');
+      }
+    });
+
+    function handleVerifyEmail() {
+      applyActionCode(auth, actionCode).then(() => {
+        showState('state-verify-success'); startCountdown('verify-countdown', 10, 'index.html');
+      }).catch(err => {
+        const map = { 'auth/invalid-action-code': 'This link has already been used or is invalid.', 'auth/expired-action-code': 'This link has expired. Please sign up again.', 'auth/user-disabled': 'This account has been disabled.' };
+        document.getElementById('error-detail').textContent = map[err.code] || 'Email verification failed. Please try again.';
+        showState('state-error');
+      });
+    }
+
+    function handleResetPassword() {
+      verifyPasswordResetCode(auth, actionCode).then(email => {
+        window._resetActionCode = actionCode;
+        window._resetAccountEmail = email;
+        showState('state-reset-form');
+      }).catch(err => {
+        const map = { 'auth/expired-action-code': 'This reset link has expired. Please request a new one.', 'auth/invalid-action-code': 'This link has already been used.', 'auth/user-not-found': 'No account found for this link.' };
+        document.getElementById('error-detail').textContent = map[err.code] || 'Invalid reset link.';
+        showState('state-error');
+      });
+    }
+
+    function handleRecoverEmail() {
+      let restoredEmail;
+      checkActionCode(auth, actionCode).then(info => { restoredEmail = info['data']['email']; return applyActionCode(auth, actionCode); })
+      .then(() => sendPasswordResetEmail(auth, restoredEmail))
+      .then(() => { document.getElementById('error-detail').textContent = 'Your email has been restored and a password reset link has been sent.'; showState('state-error'); })
+      .catch(() => { document.getElementById('error-detail').textContent = 'Email recovery failed. The link may be invalid.'; showState('state-error'); });
+    }
+
+    window.submitPasswordReset = function () {
+      const newPw = document.getElementById('new-pw').value;
+      const confPw = document.getElementById('confirm-pw').value;
+      const btn = document.getElementById('reset-btn');
+      const errEl = document.getElementById('reset-error');
+      const matchEl = document.getElementById('match-error');
+      errEl.style.display = 'none'; matchEl.style.display = 'none';
+      const allMet = [newPw.length >= 8, /[A-Z]/.test(newPw), /[0-9]/.test(newPw), /[^A-Za-z0-9]/.test(newPw)].every(Boolean);
+      if (!allMet) { document.getElementById('reset-error-text').textContent = 'Password does not meet all requirements.'; errEl.style.display = 'flex'; return; }
+      if (newPw !== confPw) { matchEl.style.display = 'block'; return; }
+      btn.disabled = true; btn.textContent = 'Updating...';
+      confirmPasswordReset(auth, window._resetActionCode, newPw).then(() => {
+        showState('state-reset-success'); startCountdown('reset-countdown', 10, 'index.html');
+      }).catch(err => {
+        btn.disabled = false; btn.textContent = 'Set New Password';
+        const msg = err.code === 'auth/expired-action-code' ? 'This link has expired. Please request a new one.' : 'Failed to update password. Please try again.';
+        document.getElementById('reset-error-text').textContent = msg; errEl.style.display = 'flex';
+      });
+    };
+
+    window.checkPasswordStrength = function () {
+      const pw = document.getElementById('new-pw').value;
+      const reqs = document.getElementById('requirements');
+      const fill = document.getElementById('strength-fill');
+      const lbl  = document.getElementById('strength-label');
+      reqs.style.display = pw.length > 0 ? 'block' : 'none';
+      const checks = { length: pw.length >= 8, upper: /[A-Z]/.test(pw), number: /[0-9]/.test(pw), special: /[^A-Za-z0-9]/.test(pw) };
+      Object.entries(checks).forEach(([k, met]) => {
+        const row = document.getElementById(`req-${k}`);
+        if (!row) return;
+        row.querySelector('.req-x').style.display     = met ? 'none'  : 'inline-block';
+        row.querySelector('.req-check').style.display = met ? 'inline-block' : 'none';
+        row.style.color = met ? 'var(--clean)' : 'var(--text-hint)';
+      });
+      const n = Object.values(checks).filter(Boolean).length;
+      const colors = { 0:'var(--border)', 1:'#DC2626', 2:'#D97706', 3:'#D97706', 4:'#16A34A' };
+      const labels = { 0:'', 1:'WEAK', 2:'FAIR', 3:'MODERATE', 4:'STRONG' };
+      fill.style.width = (n/4*100) + '%';
+      fill.style.background = colors[n];
+      lbl.textContent  = pw ? labels[n] : '';
+      lbl.style.color  = colors[n];
+    };
+
+    window.togglePw = function (id) {
+      const el = document.getElementById(id);
+      el.type = el.type === 'password' ? 'text' : 'password';
+    };
+  </script>
+</body>
+</html>

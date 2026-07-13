@@ -1,0 +1,835 @@
+/* ═══════════════════════════════════════════════════════════════════
+   CyberShield AI — style.css v7 — Style 3 / SOC Dark Theme
+   ───────────────────────────────────────────────────────────────────
+   Design language: Palo Alto Networks SOC interface
+   Background : #0A0A0A  (pure black)
+   Surface    : #111111  (card / sidebar)
+   Border     : #1A1A1A  (all dividers)
+   Crimson    : #DC2626  (CTA + MALICIOUS — used nowhere else)
+   CLEAN      : #16A34A  (sage green — verdicts only)
+   SUSPICIOUS : #D97706  (amber — verdicts only)
+   Text       : #FFFFFF  (primary)
+   Sub-text   : #666666  (secondary)
+   Hint       : #333333  (placeholder / disabled)
+═══════════════════════════════════════════════════════════════════ */
+
+/* ── Alpine.js cloak — hides un-rendered templates ── */
+[x-cloak] { display: none !important; }
+
+/* ── CSS custom properties — single source of truth ── */
+:root {
+  /* Backgrounds */
+  --bg          : #0A0A0A;
+  --surface     : #111111;
+  --surface-2   : #161616;
+
+  /* Borders */
+  --border      : #1A1A1A;
+  --border-2    : #222222;
+
+  /* Brand — crimson used ONLY for CTA buttons and MALICIOUS verdict */
+  --crimson     : #DC2626;
+  --crimson-dk  : #B91C1C;
+  --crimson-dim : rgba(220,38,38,0.08);
+  --crimson-glow: rgba(220,38,38,0.15);
+
+  /* Verdict colours — each used only for its verdict, never decoratively */
+  --clean       : #16A34A;
+  --clean-dim   : rgba(22,163,74,0.08);
+  --suspicious  : #D97706;
+  --suspicious-dim: rgba(217,119,6,0.08);
+
+  /* Typography */
+  --text        : #FFFFFF;
+  --text-sub    : #BBBBBB;
+  --text-hint   : #888888;
+
+  /* Data visualisation bars */
+  --bar-bg      : #1A1A1A;
+}
+
+/* ── Base reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background            : var(--bg);
+  color                 : var(--text);
+  font-family           : 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height            : 100vh;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--crimson); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   AUTH LAYOUT — sign in / sign up pages
+═══════════════════════════════════════════════════════════════════ */
+
+.auth-split {
+  min-height    : 100vh;
+  display       : flex;
+}
+
+/* Left panel — dark, with very subtle crimson radial glow bottom-right */
+.auth-left {
+  width         : 52%;
+  padding       : 40px 48px;
+  border-right  : 1px solid var(--border);
+  display       : flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background    : radial-gradient(
+    ellipse 55% 45% at 85% 65%,
+    var(--crimson-glow),
+    transparent 70%
+  );
+  position      : relative;
+}
+
+/* Subtle grid overlay like DFX */
+.auth-left::after {
+  content          : '';
+  position         : absolute;
+  inset            : 0;
+  background-image :
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size  : 48px 48px;
+  opacity          : 0.4;
+  pointer-events   : none;
+}
+
+.auth-right {
+  flex          : 1;
+  display       : flex;
+  align-items   : center;
+  justify-content: center;
+  padding       : 40px 32px;
+  background    : var(--bg);
+}
+
+/* Mobile: stack vertically */
+@media (max-width: 1023px) {
+  .auth-split   { flex-direction: column; }
+  .auth-left    { width: 100%; padding: 28px 24px; }
+}
+
+/* ── Auth card (sign in form wrapper) ── */
+.auth-card {
+  background    : var(--surface);
+  border        : 1px solid var(--border-2);
+  border-radius : 6px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   LOGO ICON BOX
+═══════════════════════════════════════════════════════════════════ */
+
+.logo-box {
+  width          : 28px;
+  height         : 28px;
+  background     : var(--crimson-dim);
+  border         : 1px solid rgba(220,38,38,0.3);
+  border-radius  : 4px;
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+  flex-shrink    : 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   STAT NUMBERS — Palo Alto big number style
+═══════════════════════════════════════════════════════════════════ */
+
+.stat-num {
+  font-size          : 22px;
+  font-weight        : 800;
+  line-height        : 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing     : -0.02em;
+}
+
+.stat-label {
+  font-size    : 10px;
+  color        : #888888;
+  margin-top   : 4px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight  : 500;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   PARTNER / SOURCE LOGOS ROW
+═══════════════════════════════════════════════════════════════════ */
+
+.sources-row {
+  display   : flex;
+  gap       : 14px;
+  flex-wrap : wrap;
+  align-items: center;
+}
+
+.source-name {
+  font-size     : 10px;
+  font-weight   : 600;
+  color         : #888888;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   FORM ELEMENTS
+═══════════════════════════════════════════════════════════════════ */
+
+.cs-label {
+  display       : block;
+  font-size     : 10px;
+  font-weight   : 600;
+  color         : var(--text-hint);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom : 6px;
+}
+
+.cs-input {
+  width             : 100%;
+  background        : var(--bg);
+  border            : 1px solid var(--border-2);
+  border-radius     : 4px;
+  padding           : 11px 14px;
+  font-family       : inherit;
+  font-size         : 13px;
+  color             : var(--text);
+  outline           : none;
+  transition        : border-color 0.15s;
+  appearance        : none;
+  -webkit-appearance: none;
+}
+
+.cs-input::placeholder { color: var(--text-hint); }
+
+.cs-input:focus {
+  border-color: var(--crimson);
+}
+
+select.cs-input {
+  background-image   : url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat  : no-repeat;
+  background-position: right 14px center;
+  padding-right      : 40px;
+  cursor             : pointer;
+}
+
+.cs-hint {
+  font-size  : 11px;
+  color      : var(--text-hint);
+  margin-top : 6px;
+  line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   BUTTONS — crimson is the ONLY coloured button on the whole platform
+═══════════════════════════════════════════════════════════════════ */
+
+/* Primary — crimson fill */
+.btn-primary {
+  width         : 100%;
+  background    : var(--crimson);
+  color         : #FFFFFF;
+  border        : none;
+  border-radius : 4px;
+  padding       : 12px 24px;
+  font-family   : inherit;
+  font-size     : 12px;
+  font-weight   : 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor        : pointer;
+  transition    : background 0.15s, transform 0.1s;
+  text-align    : center;
+  display       : block;
+  text-decoration: none;
+}
+
+.btn-primary:hover:not(:disabled)  { background: var(--crimson-dk); }
+.btn-primary:active:not(:disabled) { transform: translateY(1px); }
+.btn-primary:disabled              { opacity: 0.35; cursor: not-allowed; }
+
+/* Ghost — dark outline */
+.btn-ghost {
+  width          : 100%;
+  background     : transparent;
+  color          : var(--text-sub);
+  border         : 1px solid var(--border-2);
+  border-radius  : 4px;
+  padding        : 11px 24px;
+  font-family    : inherit;
+  font-size      : 12px;
+  font-weight    : 500;
+  letter-spacing : 0.04em;
+  cursor         : pointer;
+  transition     : border-color 0.15s, color 0.15s;
+  text-align     : center;
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+  gap            : 8px;
+}
+
+.btn-ghost:hover:not(:disabled) {
+  border-color: var(--text-hint);
+  color       : var(--text);
+}
+
+.btn-ghost:disabled { opacity: 0.35; cursor: not-allowed; }
+
+/* Scan button — used in dashboard topbar */
+.btn-scan {
+  background    : var(--crimson);
+  color         : #FFFFFF;
+  border        : none;
+  border-radius : 4px;
+  padding       : 8px 18px;
+  font-family   : inherit;
+  font-size     : 11px;
+  font-weight   : 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor        : pointer;
+  transition    : background 0.15s;
+}
+
+.btn-scan:hover:not(:disabled) { background: var(--crimson-dk); }
+.btn-scan:disabled              { opacity: 0.35; cursor: not-allowed; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   DIVIDER
+═══════════════════════════════════════════════════════════════════ */
+
+.divider {
+  display       : flex;
+  align-items   : center;
+  gap           : 12px;
+  color         : var(--text-hint);
+  font-size     : 10px;
+  font-weight   : 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.divider::before, .divider::after {
+  content   : '';
+  flex      : 1;
+  height    : 1px;
+  background: var(--border);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   BANNERS — error, success, warning
+═══════════════════════════════════════════════════════════════════ */
+
+.banner {
+  display      : flex;
+  gap          : 10px;
+  padding      : 11px 14px;
+  border-radius: 4px;
+  font-size    : 12px;
+  line-height  : 1.6;
+}
+
+.banner-error {
+  background: var(--crimson-dim);
+  border    : 1px solid rgba(220,38,38,0.2);
+  color     : #EF4444;
+}
+
+.banner-success {
+  background: var(--clean-dim);
+  border    : 1px solid rgba(22,163,74,0.2);
+  color     : var(--clean);
+}
+
+.banner-warn {
+  background: var(--suspicious-dim);
+  border    : 1px solid rgba(217,119,6,0.2);
+  color     : var(--suspicious);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   PASSWORD STRENGTH BAR
+═══════════════════════════════════════════════════════════════════ */
+
+.strength-track {
+  height       : 2px;
+  background   : var(--border);
+  border-radius: 2px;
+  overflow     : hidden;
+  margin-top   : 8px;
+}
+
+.strength-fill {
+  height       : 100%;
+  border-radius: 2px;
+  transition   : width 0.35s ease, background 0.35s ease;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   REQUIREMENTS CHECKLIST
+═══════════════════════════════════════════════════════════════════ */
+
+.req-box {
+  background    : var(--surface);
+  border        : 1px solid var(--border);
+  border-radius : 4px;
+  padding       : 12px 14px;
+  margin-top    : 12px;
+}
+
+.req-title {
+  font-size     : 9px;
+  font-weight   : 700;
+  color         : var(--text-hint);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom : 10px;
+}
+
+.req-row {
+  display    : flex;
+  align-items: center;
+  gap        : 8px;
+  font-size  : 12px;
+  padding    : 3px 0;
+  color      : var(--text-hint);
+  transition : color 0.2s;
+}
+
+.req-row.met { color: var(--clean); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   BADGES — verdict labels
+═══════════════════════════════════════════════════════════════════ */
+
+.badge {
+  display       : inline-flex;
+  align-items   : center;
+  gap           : 5px;
+  font-size     : 9px;
+  font-weight   : 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding       : 4px 10px;
+  border-radius : 3px;
+}
+
+.badge-clean      { color: var(--clean);      background: var(--clean-dim);      border: 1px solid rgba(22,163,74,0.2);  }
+.badge-suspicious { color: var(--suspicious);  background: var(--suspicious-dim); border: 1px solid rgba(217,119,6,0.2); }
+.badge-malicious  { color: #EF4444;            background: var(--crimson-dim);    border: 1px solid rgba(220,38,38,0.2); }
+.badge-neutral    { color: var(--text-sub);    background: var(--surface);        border: 1px solid var(--border);        }
+
+/* ═══════════════════════════════════════════════════════════════════
+   MODAL
+═══════════════════════════════════════════════════════════════════ */
+
+.modal-backdrop {
+  position       : fixed;
+  inset          : 0;
+  background     : rgba(0,0,0,0.75);
+  backdrop-filter: blur(6px);
+  z-index        : 50;
+  display        : flex;
+  align-items    : flex-end;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .modal-backdrop { align-items: center; padding: 24px; }
+}
+
+.modal-card {
+  width        : 100%;
+  max-width    : 420px;
+  background   : var(--surface);
+  border       : 1px solid var(--border-2);
+  border-radius: 6px;
+  padding      : 28px 24px;
+  position     : relative;
+  box-shadow   : 0 24px 60px rgba(0,0,0,0.6);
+}
+
+@media (min-width: 640px) {
+  .modal-card { border-radius: 6px; padding: 32px; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   DASHBOARD SHELL
+═══════════════════════════════════════════════════════════════════ */
+
+.dash-shell {
+  display   : flex;
+  height    : 100dvh;
+  overflow  : hidden;
+  background: var(--bg);
+}
+
+/* ── Sidebar ── */
+.dash-sidebar {
+  width        : 200px;
+  min-width    : 200px;
+  background   : var(--surface);
+  border-right : 1px solid var(--border);
+  display      : flex;
+  flex-direction: column;
+  transition   : width 0.25s ease, min-width 0.25s ease;
+  overflow     : hidden;
+  flex-shrink  : 0;
+}
+
+.dash-sidebar.collapsed {
+  width    : 56px;
+  min-width: 56px;
+}
+
+/* Nav items */
+.dash-nav {
+  display       : flex;
+  align-items   : center;
+  gap           : 10px;
+  padding       : 9px 12px;
+  border-radius : 0 4px 4px 0;
+  font-size     : 12px;
+  color         : var(--text-sub);
+  cursor        : pointer;
+  transition    : background 0.15s, color 0.15s;
+  white-space   : nowrap;
+  overflow      : hidden;
+  text-decoration: none;
+  border-left   : 2px solid transparent;
+  margin-right  : 8px;
+}
+
+.dash-nav:hover {
+  background: rgba(255,255,255,0.04);
+  color     : var(--text);
+}
+
+.dash-nav.active {
+  background  : var(--crimson-dim);
+  color       : #fff;
+  font-weight : 600;
+  border-left : 2px solid var(--crimson);
+}
+
+.dash-nav-label {
+  transition: opacity 0.2s, max-width 0.25s;
+  max-width : 140px;
+  opacity   : 1;
+}
+
+.dash-sidebar.collapsed .dash-nav-label { max-width: 0; opacity: 0; }
+.dash-sidebar.collapsed .dash-nav       { justify-content: center; padding: 9px 0; margin-right: 0; }
+.dash-sidebar.collapsed .logo-text      { max-width: 0; opacity: 0; }
+
+/* Section header inside sidebar */
+.nav-section {
+  font-size     : 8px;
+  font-weight   : 700;
+  color         : var(--text-hint);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding       : 6px 14px;
+  margin-top    : 8px;
+  margin-bottom : 2px;
+  white-space   : nowrap;
+  overflow      : hidden;
+}
+
+.dash-sidebar.collapsed .nav-section { opacity: 0; }
+
+/* Collapse toggle at sidebar bottom */
+.collapse-btn {
+  border      : none;
+  background  : transparent;
+  cursor      : pointer;
+  color       : var(--text-hint);
+  display     : flex;
+  align-items : center;
+  justify-content: center;
+  padding     : 12px;
+  width       : 100%;
+  border-top  : 1px solid var(--border);
+  transition  : color 0.2s;
+}
+
+.collapse-btn:hover { color: var(--crimson); }
+
+/* ── Main content area ── */
+.dash-main {
+  flex          : 1;
+  display       : flex;
+  flex-direction: column;
+  overflow      : hidden;
+  min-width     : 0;
+}
+
+/* ── Topbar ── */
+.dash-topbar {
+  height        : 58px;
+  min-height    : 58px;
+  display       : flex;
+  align-items   : center;
+  justify-content: space-between;
+  padding       : 0 22px;
+  gap           : 14px;
+  background    : var(--surface);
+  border-bottom : 1px solid var(--border);
+  flex-shrink   : 0;
+  position      : relative;
+  z-index       : 10;
+}
+
+/* ── Page content scroll area ── */
+.dash-content {
+  flex      : 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding   : 22px;
+}
+
+/* ── Palo Alto stat strip ── */
+.stat-strip {
+  padding      : 14px 22px;
+  border-bottom: 1px solid var(--border);
+  background   : var(--surface);
+  flex-shrink  : 0;
+}
+
+/* ── Big number stat pair (Palo Alto style) ── */
+.stat-pair {
+  display              : grid;
+  grid-template-columns: 1fr 1fr;
+  gap                  : 1px;
+  background           : var(--border);
+}
+
+.stat-cell {
+  background: var(--bg);
+  padding   : 14px 18px;
+}
+
+/* ── Detection bars ── */
+.det-bar-wrap { margin-bottom: 10px; }
+
+.det-bar-row {
+  display        : flex;
+  justify-content: space-between;
+  margin-bottom  : 5px;
+}
+
+.det-bar-label { font-size: 10px; color: var(--text-sub); }
+.det-bar-pct   { font-size: 10px; font-weight: 700; color: var(--text); }
+
+.det-bar-track {
+  background   : var(--bar-bg);
+  height       : 5px;
+  border-radius: 2px;
+  overflow     : hidden;
+}
+
+.det-bar-fill {
+  height       : 100%;
+  border-radius: 2px;
+  background   : var(--crimson);
+  transition   : width 0.6s ease;
+}
+
+/* ── Verdict block — left red border (Palo Alto style) ── */
+.verdict-block {
+  border-left  : 3px solid var(--crimson);
+  padding      : 12px 16px;
+  background   : var(--surface);
+  border-radius: 0 4px 4px 0;
+}
+
+.verdict-block.clean      { border-left-color: var(--clean); }
+.verdict-block.suspicious { border-left-color: var(--suspicious); }
+.verdict-block.malicious  { border-left-color: var(--crimson); }
+
+/* ── Result cards ── */
+.result-card {
+  background   : var(--surface);
+  border       : 1px solid var(--border);
+  border-radius: 4px;
+  padding      : 18px;
+}
+
+/* ── History rows ── */
+.hist-row { transition: background 0.1s; }
+.hist-row:hover { background: var(--surface); }
+
+/* ── Dashboard settings toggle ── */
+.tog-track {
+  width        : 40px;
+  height       : 22px;
+  background   : var(--border-2);
+  border-radius: 12px;
+  position     : relative;
+  cursor       : pointer;
+  transition   : background 0.2s;
+  flex-shrink  : 0;
+}
+
+.tog-track.on     { background: var(--crimson); }
+.tog-thumb        { width: 16px; height: 16px; background: #fff; border-radius: 50%; position: absolute; top: 3px; left: 3px; transition: transform 0.2s; }
+.tog-track.on .tog-thumb { transform: translateX(18px); }
+
+/* ── Avatar circle ── */
+.avatar {
+  width          : 34px;
+  height         : 34px;
+  border-radius  : 50%;
+  background     : var(--crimson);
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+  font-size      : 13px;
+  font-weight    : 700;
+  color          : #fff;
+  flex-shrink    : 0;
+}
+
+/* ── Chart wrapper ── */
+.chart-wrap { position: relative; height: 200px; }
+
+/* ── Scan spinner ── */
+.scan-spinner {
+  display        : flex;
+  flex-direction : column;
+  align-items    : center;
+  justify-content: center;
+  padding        : 56px 20px;
+  gap            : 14px;
+}
+
+/* ── Loading screen ── */
+#loading-screen {
+  position       : fixed;
+  inset          : 0;
+  background     : var(--bg);
+  z-index        : 999;
+  display        : flex;
+  flex-direction : column;
+  align-items    : center;
+  justify-content: center;
+  gap            : 20px;
+}
+
+/* ── Mobile overlay ── */
+#mobile-overlay {
+  display         : none;
+  position        : fixed;
+  inset           : 0;
+  background      : rgba(0,0,0,0.75);
+  backdrop-filter : blur(4px);
+  z-index         : 40;
+}
+
+#mobile-overlay.active { display: block; }
+
+@media (max-width: 1023px) {
+  .dash-sidebar {
+    position  : fixed;
+    top       : 0;
+    left      : 0;
+    height    : 100dvh;
+    z-index   : 50;
+    transform : translateX(-100%);
+    transition: transform 0.25s ease;
+    width     : 200px !important;
+    min-width : 200px !important;
+  }
+  .dash-sidebar.mobile-open { transform: translateX(0); }
+  .collapse-btn { display: none !important; }
+  #hamburger-btn { display: flex !important; }
+}
+
+@media (min-width: 1024px) {
+  #hamburger-btn { display: none !important; }
+}
+
+/* ── Tab panes ── */
+.tab-pane         { display: none; }
+.tab-pane.active  { display: block; }
+
+/* ── Ticker ── */
+@keyframes tickerScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-track { animation: tickerScroll 60s linear infinite; }
+.ticker-track:hover { animation-play-state: paused; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   VERDICT COLOUR UTILITY CLASSES — used by Alpine.js :class bindings
+═══════════════════════════════════════════════════════════════════ */
+
+.verdict-CLEAN      { color: var(--clean); }
+.verdict-SUSPICIOUS { color: var(--suspicious); }
+.verdict-MALICIOUS  { color: #EF4444; }
+.verdict-UNKNOWN    { color: var(--text-sub); }
+
+.risk-low    { color: var(--clean); }
+.risk-medium { color: var(--suspicious); }
+.risk-high   { color: #EF4444; }
+
+/* Verdict action classes */
+.act-ALLOW    { background: var(--clean-dim);       color: var(--clean); }
+.act-MONITOR  { background: var(--suspicious-dim);  color: var(--suspicious); }
+.act-BLOCK    { background: var(--crimson-dim);      color: #EF4444; }
+.act-ESCALATE { background: rgba(139,92,246,0.08);  color: #8B5CF6; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   404 PAGE
+═══════════════════════════════════════════════════════════════════ */
+
+.error-code {
+  font-size     : clamp(5rem, 16vw, 7.5rem);
+  font-weight   : 800;
+  line-height   : 1;
+  letter-spacing: -0.03em;
+  color         : var(--crimson);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════════════════════════════ */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up   { animation: fadeUp 0.4s ease forwards; }
+.fade-up-1 { animation: fadeUp 0.4s ease 0.07s forwards; opacity: 0; }
+.fade-up-2 { animation: fadeUp 0.4s ease 0.14s forwards; opacity: 0; }
+.fade-up-3 { animation: fadeUp 0.4s ease 0.21s forwards; opacity: 0; }
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   PDF REPORT TEMPLATE — lives inside dashboard.html <iframe>
+═══════════════════════════════════════════════════════════════════ */
+
+.pdf-header   { background: var(--crimson); color: #fff; padding: 28px 32px; }
+.pdf-section  { padding: 20px 32px; border-bottom: 1px solid #1A1A1A; background: #0A0A0A; color: #fff; }
+.pdf-card     { background: #111; border: 1px solid #1A1A1A; border-radius: 4px; padding: 12px 14px; }
+.pdf-label    { font-size: 9px; font-weight: 700; color: #333; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+.pdf-value    { font-size: 13px; font-weight: 600; color: #fff; }
+.pdf-footer   { background: #111; padding: 14px 32px; text-align: center; font-size: 9px; color: #333; letter-spacing: 0.06em; text-transform: uppercase; }

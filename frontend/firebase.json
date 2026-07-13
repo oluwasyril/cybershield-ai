@@ -1,0 +1,29 @@
+{
+  "hosting": {
+    "target": "main",
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "backend/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/__/auth/action",
+        "destination": "/action.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(js|css|html)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ]
+      }
+    ]
+  }
+}
