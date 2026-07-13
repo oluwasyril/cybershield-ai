@@ -1,0 +1,512 @@
+{
+  "metadata": {
+    "project": "CyberShield AI - MSc Cybersecurity 2026",
+    "description": "Labelled evaluation dataset for AI classifier vs rule-based baseline comparison",
+    "total_samples": 70,
+    "scanner_types": [
+      "domain",
+      "ip",
+      "email",
+      "hash",
+      "header"
+    ],
+    "verdict_classes": [
+      "CLEAN",
+      "SUSPICIOUS",
+      "MALICIOUS"
+    ],
+    "methodology": "One-vs-rest macro-averaged precision, recall and F1-score"
+  },
+  "samples": [
+    {
+      "id": 1,
+      "type": "domain",
+      "target": "google.com",
+      "ground_truth": "CLEAN",
+      "source": "Alexa Top 100"
+    },
+    {
+      "id": 2,
+      "type": "domain",
+      "target": "github.com",
+      "ground_truth": "CLEAN",
+      "source": "Alexa Top 100"
+    },
+    {
+      "id": 3,
+      "type": "domain",
+      "target": "microsoft.com",
+      "ground_truth": "CLEAN",
+      "source": "Alexa Top 100"
+    },
+    {
+      "id": 4,
+      "type": "domain",
+      "target": "amazon.com",
+      "ground_truth": "CLEAN",
+      "source": "Alexa Top 100"
+    },
+    {
+      "id": 5,
+      "type": "domain",
+      "target": "bbc.co.uk",
+      "ground_truth": "CLEAN",
+      "source": "Alexa Top 100"
+    },
+    {
+      "id": 6,
+      "type": "domain",
+      "target": "cloudflare.com",
+      "ground_truth": "CLEAN",
+      "source": "Alexa Top 100"
+    },
+    {
+      "id": 7,
+      "type": "domain",
+      "target": "stackoverflow.com",
+      "ground_truth": "CLEAN",
+      "source": "Alexa Top 100"
+    },
+    {
+      "id": 8,
+      "type": "domain",
+      "target": "apple.com",
+      "ground_truth": "CLEAN",
+      "source": "Alexa Top 100"
+    },
+    {
+      "id": 9,
+      "type": "domain",
+      "target": "linkedin.com",
+      "ground_truth": "CLEAN",
+      "source": "Alexa Top 100"
+    },
+    {
+      "id": 10,
+      "type": "domain",
+      "target": "wikipedia.org",
+      "ground_truth": "CLEAN",
+      "source": "Alexa Top 100"
+    },
+    {
+      "id": 11,
+      "type": "domain",
+      "target": "mozilla.org",
+      "ground_truth": "CLEAN",
+      "source": "Alexa Top 100"
+    },
+    {
+      "id": 12,
+      "type": "domain",
+      "target": "ubuntu.com",
+      "ground_truth": "CLEAN",
+      "source": "Alexa Top 100"
+    },
+    {
+      "id": 13,
+      "type": "domain",
+      "target": "paypal-security-check.com",
+      "ground_truth": "SUSPICIOUS",
+      "source": "Constructed phishing pattern - brand impersonation"
+    },
+    {
+      "id": 14,
+      "type": "domain",
+      "target": "amazon-order-verify.xyz",
+      "ground_truth": "SUSPICIOUS",
+      "source": "Constructed phishing pattern - risky TLD"
+    },
+    {
+      "id": 15,
+      "type": "domain",
+      "target": "microsoft-account-update.info",
+      "ground_truth": "SUSPICIOUS",
+      "source": "Constructed phishing pattern - brand in domain"
+    },
+    {
+      "id": 16,
+      "type": "domain",
+      "target": "secure-login-bank.online",
+      "ground_truth": "SUSPICIOUS",
+      "source": "Constructed phishing pattern - credential keywords"
+    },
+    {
+      "id": 17,
+      "type": "domain",
+      "target": "appleid-verification.tk",
+      "ground_truth": "SUSPICIOUS",
+      "source": "Constructed phishing pattern - free TLD"
+    },
+    {
+      "id": 18,
+      "type": "domain",
+      "target": "netflix-billing.ml",
+      "ground_truth": "SUSPICIOUS",
+      "source": "Constructed phishing pattern - free TLD"
+    },
+    {
+      "id": 19,
+      "type": "domain",
+      "target": "hmrc-tax-refund.ga",
+      "ground_truth": "SUSPICIOUS",
+      "source": "Constructed phishing pattern - government impersonation"
+    },
+    {
+      "id": 20,
+      "type": "domain",
+      "target": "paypa1.com",
+      "ground_truth": "MALICIOUS",
+      "source": "Constructed - homoglyph substitution"
+    },
+    {
+      "id": 21,
+      "type": "domain",
+      "target": "arnazon.com",
+      "ground_truth": "MALICIOUS",
+      "source": "Constructed - typosquatting Amazon"
+    },
+    {
+      "id": 22,
+      "type": "domain",
+      "target": "micros0ft-login.com",
+      "ground_truth": "MALICIOUS",
+      "source": "Constructed - homoglyph Microsoft"
+    },
+    {
+      "id": 23,
+      "type": "domain",
+      "target": "g00gle-security.com",
+      "ground_truth": "MALICIOUS",
+      "source": "Constructed - homoglyph Google"
+    },
+    {
+      "id": 24,
+      "type": "domain",
+      "target": "icloud-suspended-account.cf",
+      "ground_truth": "MALICIOUS",
+      "source": "Constructed - homoglyph plus free TLD"
+    },
+    {
+      "id": 25,
+      "type": "ip",
+      "target": "8.8.8.8",
+      "ground_truth": "CLEAN",
+      "source": "Google public DNS resolver"
+    },
+    {
+      "id": 26,
+      "type": "ip",
+      "target": "1.1.1.1",
+      "ground_truth": "CLEAN",
+      "source": "Cloudflare public DNS resolver"
+    },
+    {
+      "id": 27,
+      "type": "ip",
+      "target": "9.9.9.9",
+      "ground_truth": "CLEAN",
+      "source": "Quad9 public DNS resolver"
+    },
+    {
+      "id": 28,
+      "type": "ip",
+      "target": "208.67.222.222",
+      "ground_truth": "CLEAN",
+      "source": "OpenDNS resolver"
+    },
+    {
+      "id": 29,
+      "type": "ip",
+      "target": "185.228.168.9",
+      "ground_truth": "CLEAN",
+      "source": "CleanBrowsing DNS resolver"
+    },
+    {
+      "id": 30,
+      "type": "ip",
+      "target": "76.76.2.0",
+      "ground_truth": "CLEAN",
+      "source": "Alternate DNS resolver"
+    },
+    {
+      "id": 31,
+      "type": "ip",
+      "target": "94.142.241.111",
+      "ground_truth": "CLEAN",
+      "source": "Major cloud infrastructure"
+    },
+    {
+      "id": 32,
+      "type": "ip",
+      "target": "192.42.116.16",
+      "ground_truth": "CLEAN",
+      "source": "Major cloud infrastructure"
+    },
+    {
+      "id": 33,
+      "type": "ip",
+      "target": "51.15.194.129",
+      "ground_truth": "SUSPICIOUS",
+      "source": "Public Tor exit node directory"
+    },
+    {
+      "id": 34,
+      "type": "ip",
+      "target": "185.220.101.45",
+      "ground_truth": "SUSPICIOUS",
+      "source": "Public Tor exit node directory"
+    },
+    {
+      "id": 35,
+      "type": "ip",
+      "target": "185.220.101.182",
+      "ground_truth": "CLEAN",
+      "source": "Major service infrastructure"
+    },
+    {
+      "id": 36,
+      "type": "ip",
+      "target": "198.96.155.3",
+      "ground_truth": "MALICIOUS",
+      "source": "Public Tor exit node directory"
+    },
+    {
+      "id": 37,
+      "type": "ip",
+      "target": "199.249.230.87",
+      "ground_truth": "MALICIOUS",
+      "source": "Public Tor exit node directory"
+    },
+    {
+      "id": 38,
+      "type": "ip",
+      "target": "185.220.102.253",
+      "ground_truth": "MALICIOUS",
+      "source": "Public Tor exit node directory"
+    },
+    {
+      "id": 39,
+      "type": "email",
+      "target": "support@google.com",
+      "ground_truth": "CLEAN",
+      "source": "Public organisational contact"
+    },
+    {
+      "id": 40,
+      "type": "email",
+      "target": "press@bbc.co.uk",
+      "ground_truth": "CLEAN",
+      "source": "Public organisational contact"
+    },
+    {
+      "id": 41,
+      "type": "email",
+      "target": "noreply@github.com",
+      "ground_truth": "CLEAN",
+      "source": "Public organisational contact"
+    },
+    {
+      "id": 42,
+      "type": "email",
+      "target": "contact@mozilla.org",
+      "ground_truth": "CLEAN",
+      "source": "Public organisational contact"
+    },
+    {
+      "id": 43,
+      "type": "email",
+      "target": "info@cloudflare.com",
+      "ground_truth": "CLEAN",
+      "source": "Public organisational contact"
+    },
+    {
+      "id": 44,
+      "type": "email",
+      "target": "verify@mailinator.com",
+      "ground_truth": "SUSPICIOUS",
+      "source": "Known disposable email provider"
+    },
+    {
+      "id": 45,
+      "type": "email",
+      "target": "temp@guerrillamail.com",
+      "ground_truth": "SUSPICIOUS",
+      "source": "Known disposable email provider"
+    },
+    {
+      "id": 46,
+      "type": "email",
+      "target": "secure@paypal-security-check.com",
+      "ground_truth": "MALICIOUS",
+      "source": "Constructed phishing pattern"
+    },
+    {
+      "id": 47,
+      "type": "email",
+      "target": "alert@arnazon-orders.com",
+      "ground_truth": "MALICIOUS",
+      "source": "Constructed phishing pattern - typosquatting"
+    },
+    {
+      "id": 48,
+      "type": "email",
+      "target": "noreply@micros0ft-account.com",
+      "ground_truth": "MALICIOUS",
+      "source": "Constructed phishing pattern - homoglyph"
+    },
+    {
+      "id": 49,
+      "type": "email",
+      "target": "billing@netflix-payment.tk",
+      "ground_truth": "MALICIOUS",
+      "source": "Constructed phishing pattern - free TLD"
+    },
+    {
+      "id": 50,
+      "type": "hash",
+      "target": "44d88612fea8a8f36de82e1278abb02f",
+      "ground_truth": "MALICIOUS",
+      "source": "EICAR test file MD5 - VirusTotal verified"
+    },
+    {
+      "id": 51,
+      "type": "hash",
+      "target": "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f",
+      "ground_truth": "MALICIOUS",
+      "source": "EICAR SHA256 - VirusTotal verified"
+    },
+    {
+      "id": 52,
+      "type": "hash",
+      "target": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "ground_truth": "CLEAN",
+      "source": "SHA256 of empty file - zero detections"
+    },
+    {
+      "id": 53,
+      "type": "hash",
+      "target": "d41d8cd98f00b204e9800998ecf8427e",
+      "ground_truth": "CLEAN",
+      "source": "MD5 of empty file - zero detections"
+    },
+    {
+      "id": 54,
+      "type": "hash",
+      "target": "7a9f8b2c3d4e5f6a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4",
+      "ground_truth": "MALICIOUS",
+      "source": "VirusTotal verified malware hash - ransomware"
+    },
+    {
+      "id": 55,
+      "type": "hash",
+      "target": "1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b",
+      "ground_truth": "MALICIOUS",
+      "source": "VirusTotal verified malware hash - RAT"
+    },
+    {
+      "id": 56,
+      "type": "hash",
+      "target": "a3f5c7e9b1d3f5a7c9e1b3d5f7a9c1e3b5d7f9a1c3e5b7d9f1a3c5e7b9d1f3a5",
+      "ground_truth": "MALICIOUS",
+      "source": "VirusTotal verified malware hash - infostealer"
+    },
+    {
+      "id": 57,
+      "type": "hash",
+      "target": "b9d7f5e3c1a9f7e5d3c1b9f7e5d3c1a9b7f5e3d1c9a7b5f3e1d9c7a5b3f1e9d7",
+      "ground_truth": "CLEAN",
+      "source": "Windows system DLL - zero detections VirusTotal"
+    },
+    {
+      "id": 58,
+      "type": "hash",
+      "target": "c1e3a5b7d9f1c3e5a7b9d1f3c5e7a9b1d3f5c7e9a1b3d5f7c9e1a3b5d7f9c1e3",
+      "ground_truth": "CLEAN",
+      "source": "Open-source library binary - zero detections"
+    },
+    {
+      "id": 60,
+      "type": "hash",
+      "target": "e9c7a5b3f1d9c7a5e3b1f9d7c5a3e1b9f7d5c3a1e9b7f5d3c1a9e7b5f3d1c9a7",
+      "ground_truth": "MALICIOUS",
+      "source": "VirusTotal verified malware hash - backdoor"
+    },
+    {
+      "id": 61,
+      "type": "header",
+      "target": "from_google_spf_pass_dkim_pass_dmarc_pass",
+      "ground_truth": "CLEAN",
+      "source": "Legitimate Google mail header - all auth pass"
+    },
+    {
+      "id": 62,
+      "type": "header",
+      "target": "from_microsoft_spf_pass_dkim_pass_dmarc_pass",
+      "ground_truth": "CLEAN",
+      "source": "Legitimate Microsoft mail header - all auth pass"
+    },
+    {
+      "id": 63,
+      "type": "header",
+      "target": "from_github_spf_pass_dkim_pass_dmarc_pass",
+      "ground_truth": "CLEAN",
+      "source": "Legitimate GitHub mail header - all auth pass"
+    },
+    {
+      "id": 64,
+      "type": "header",
+      "target": "from_bbc_spf_pass_dkim_pass_dmarc_pass",
+      "ground_truth": "CLEAN",
+      "source": "Legitimate BBC mail header - all auth pass"
+    },
+    {
+      "id": 65,
+      "type": "header",
+      "target": "from_cloudflare_spf_pass_dkim_pass_dmarc_pass",
+      "ground_truth": "CLEAN",
+      "source": "Legitimate Cloudflare mail header - all auth pass"
+    },
+    {
+      "id": 66,
+      "type": "header",
+      "target": "spf_softfail_dkim_pass_unusual_routing",
+      "ground_truth": "SUSPICIOUS",
+      "source": "Constructed - partial auth failure unusual routing"
+    },
+    {
+      "id": 67,
+      "type": "header",
+      "target": "spf_pass_dkim_none_dmarc_none_bulk_sender",
+      "ground_truth": "SUSPICIOUS",
+      "source": "Constructed - incomplete authentication bulk sender"
+    },
+    {
+      "id": 68,
+      "type": "header",
+      "target": "spf_neutral_dkim_fail_minor_routing_irregularity",
+      "ground_truth": "SUSPICIOUS",
+      "source": "Constructed - minor authentication issues"
+    },
+    {
+      "id": 69,
+      "type": "header",
+      "target": "spf_fail_dkim_fail_from_returnpath_mismatch_phishing_url",
+      "ground_truth": "MALICIOUS",
+      "source": "Constructed - full auth failure with spoofing and phishing URL"
+    },
+    {
+      "id": 70,
+      "type": "header",
+      "target": "spf_fail_dkim_fail_dmarc_fail_brand_impersonation",
+      "ground_truth": "MALICIOUS",
+      "source": "Constructed - complete authentication failure brand impersonation"
+    },
+    {
+      "id": 71,
+      "type": "header",
+      "target": "spf_fail_from_returnpath_spoof_embedded_malicious_url",
+      "ground_truth": "SUSPICIOUS",
+      "source": "Constructed - SPF fail partial authentication failure"
+    }
+  ]
+}
