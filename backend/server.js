@@ -7,6 +7,7 @@ const express    = require('express');
 const cors       = require('cors');
 const rateLimit  = require('express-rate-limit');
 
+
 const app  = express();
 const PORT = process.env.PORT || 3000;
 
@@ -111,6 +112,9 @@ app.use('/api/audit', auditRoutes);
 
 const bulkScanRoutes = require('./routes/bulkScan');
 app.use('/api/bulk', scanLimiter, bulkScanRoutes);
+
+const threatIntelRoutes = require('./routes/threatIntelRoute');
+app.use('/api/threat-intel', threatIntelRoutes);
 
 // ─────────────────────────────────────────────
 // GLOBAL ERROR HANDLER

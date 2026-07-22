@@ -1,22 +1,22 @@
 /* ═══════════════════════════════════════════════════════════════════
-   CyberShield AI — style.css v7 — Style 3 / SOC Dark Theme
+   CyberShield AI  -  style.css v7  -  Style 3 / SOC Dark Theme
    ───────────────────────────────────────────────────────────────────
    Design language: Palo Alto Networks SOC interface
    Background : #0A0A0A  (pure black)
    Surface    : #111111  (card / sidebar)
    Border     : #1A1A1A  (all dividers)
-   Crimson    : #DC2626  (CTA + MALICIOUS — used nowhere else)
-   CLEAN      : #16A34A  (sage green — verdicts only)
-   SUSPICIOUS : #D97706  (amber — verdicts only)
+   Crimson    : #DC2626  (CTA + MALICIOUS  -  used nowhere else)
+   CLEAN      : #16A34A  (sage green  -  verdicts only)
+   SUSPICIOUS : #D97706  (amber  -  verdicts only)
    Text       : #FFFFFF  (primary)
    Sub-text   : #666666  (secondary)
    Hint       : #333333  (placeholder / disabled)
 ═══════════════════════════════════════════════════════════════════ */
 
-/* ── Alpine.js cloak — hides un-rendered templates ── */
+/* ── Alpine.js cloak  -  hides un-rendered templates ── */
 [x-cloak] { display: none !important; }
 
-/* ── CSS custom properties — single source of truth ── */
+/* ── CSS custom properties  -  single source of truth ── */
 :root {
   /* Backgrounds */
   --bg          : #0A0A0A;
@@ -27,13 +27,13 @@
   --border      : #1A1A1A;
   --border-2    : #222222;
 
-  /* Brand — crimson used ONLY for CTA buttons and MALICIOUS verdict */
+  /* Brand  -  crimson used ONLY for CTA buttons and MALICIOUS verdict */
   --crimson     : #DC2626;
   --crimson-dk  : #B91C1C;
   --crimson-dim : rgba(220,38,38,0.08);
   --crimson-glow: rgba(220,38,38,0.15);
 
-  /* Verdict colours — each used only for its verdict, never decoratively */
+  /* Verdict colours  -  each used only for its verdict, never decoratively */
   --clean       : #16A34A;
   --clean-dim   : rgba(22,163,74,0.08);
   --suspicious  : #D97706;
@@ -66,7 +66,7 @@ body {
 ::-webkit-scrollbar-thumb:hover { background: var(--crimson); }
 
 /* ═══════════════════════════════════════════════════════════════════
-   AUTH LAYOUT — sign in / sign up pages
+   AUTH LAYOUT  -  sign in / sign up pages
 ═══════════════════════════════════════════════════════════════════ */
 
 .auth-split {
@@ -74,7 +74,7 @@ body {
   display       : flex;
 }
 
-/* Left panel — dark, with very subtle crimson radial glow bottom-right */
+/* Left panel  -  dark, with very subtle crimson radial glow bottom-right */
 .auth-left {
   width         : 52%;
   padding       : 40px 48px;
@@ -142,7 +142,7 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   STAT NUMBERS — Palo Alto big number style
+   STAT NUMBERS  -  Palo Alto big number style
 ═══════════════════════════════════════════════════════════════════ */
 
 .stat-num {
@@ -232,10 +232,10 @@ select.cs-input {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   BUTTONS — crimson is the ONLY coloured button on the whole platform
+   BUTTONS  -  crimson is the ONLY coloured button on the whole platform
 ═══════════════════════════════════════════════════════════════════ */
 
-/* Primary — crimson fill */
+/* Primary  -  crimson fill */
 .btn-primary {
   width         : 100%;
   background    : var(--crimson);
@@ -259,7 +259,7 @@ select.cs-input {
 .btn-primary:active:not(:disabled) { transform: translateY(1px); }
 .btn-primary:disabled              { opacity: 0.35; cursor: not-allowed; }
 
-/* Ghost — dark outline */
+/* Ghost  -  dark outline */
 .btn-ghost {
   width          : 100%;
   background     : transparent;
@@ -287,7 +287,7 @@ select.cs-input {
 
 .btn-ghost:disabled { opacity: 0.35; cursor: not-allowed; }
 
-/* Scan button — used in dashboard topbar */
+/* Scan button  -  used in dashboard topbar */
 .btn-scan {
   background    : var(--crimson);
   color         : #FFFFFF;
@@ -329,7 +329,7 @@ select.cs-input {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   BANNERS — error, success, warning
+   BANNERS  -  error, success, warning
 ═══════════════════════════════════════════════════════════════════ */
 
 .banner {
@@ -411,7 +411,7 @@ select.cs-input {
 .req-row.met { color: var(--clean); }
 
 /* ═══════════════════════════════════════════════════════════════════
-   BADGES — verdict labels
+   BADGES  -  verdict labels
 ═══════════════════════════════════════════════════════════════════ */
 
 .badge {
@@ -647,7 +647,7 @@ select.cs-input {
   transition   : width 0.6s ease;
 }
 
-/* ── Verdict block — left red border (Palo Alto style) ── */
+/* ── Verdict block  -  left red border (Palo Alto style) ── */
 .verdict-block {
   border-left  : 3px solid var(--crimson);
   padding      : 12px 16px;
@@ -774,7 +774,7 @@ select.cs-input {
 .ticker-track:hover { animation-play-state: paused; }
 
 /* ═══════════════════════════════════════════════════════════════════
-   VERDICT COLOUR UTILITY CLASSES — used by Alpine.js :class bindings
+   VERDICT COLOUR UTILITY CLASSES  -  used by Alpine.js :class bindings
 ═══════════════════════════════════════════════════════════════════ */
 
 .verdict-CLEAN      { color: var(--clean); }
@@ -824,7 +824,7 @@ select.cs-input {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   PDF REPORT TEMPLATE — lives inside dashboard.html <iframe>
+   PDF REPORT TEMPLATE  -  lives inside dashboard.html <iframe>
 ═══════════════════════════════════════════════════════════════════ */
 
 .pdf-header   { background: var(--crimson); color: #fff; padding: 28px 32px; }

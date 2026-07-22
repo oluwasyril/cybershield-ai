@@ -1,0 +1,62 @@
+[
+  {
+    "value": "44d88612fea8a8f36de82e1278abb02f",
+    "label": "MALICIOUS",
+    "category": "eicar-test-file",
+    "source": "EICAR standard antivirus test file (MD5) — publicly documented industry-standard test artifact, universally detected by AV engines"
+  },
+  {
+    "value": "3395856ce81f2b7382dee72602f798b642f14140",
+    "label": "MALICIOUS",
+    "category": "eicar-test-file",
+    "source": "EICAR standard antivirus test file (SHA1) — same file, different hash algorithm, publicly documented"
+  },
+  {
+    "value": "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0",
+    "label": "MALICIOUS",
+    "category": "eicar-test-file",
+    "source": "EICAR standard antivirus test file (SHA256) — same file, publicly documented"
+  },
+  {
+    "value": "84c82835a5d21bbcf75a61706d8ab549",
+    "label": "MALICIOUS",
+    "category": "documented-malware-wannacry",
+    "source": "WannaCry ransomware sample (MD5) — widely cited in public threat intelligence reports including MalwareBazaar"
+  },
+  {
+    "value": "ed01ebfbc9eb5bbea545af4d01bf5f1071661840480439c6e5babe8e080e41aa",
+    "label": "MALICIOUS",
+    "category": "documented-malware-wannacry",
+    "source": "WannaCry ransomware sample (SHA256) — same family, widely documented in public CTI sources"
+  },
+  {
+    "value": "db349b97c37d22f5ea1d1841e3c89eb4",
+    "label": "MALICIOUS",
+    "category": "documented-malware-mirai",
+    "source": "Mirai IoT botnet sample (MD5) — publicly documented in academic and industry threat intelligence literature"
+  },
+  {
+    "value": "d41d8cd98f00b204e9800998ecf8427e",
+    "label": "CLEAN",
+    "category": "empty-file",
+    "source": "MD5 hash of a zero-byte empty file — mathematically constant, harmless by definition, commonly used as a clean-sample control in evaluation literature"
+  },
+  {
+    "value": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "label": "CLEAN",
+    "category": "empty-file",
+    "source": "SHA256 hash of a zero-byte empty file — mathematically constant, harmless control sample"
+  },
+  {
+    "value": "5f4dcc3b5aa765d61d8327deb882cf99",
+    "label": "CLEAN",
+    "category": "harmless-test-string",
+    "source": "MD5 hash of the plaintext string \"password\" — a non-malicious, widely-referenced test hash with no malware associations in VirusTotal"
+  },
+  {
+    "value": "098f6bcd4621d373cade4e832627b4f6",
+    "label": "CLEAN",
+    "category": "harmless-test-string",
+    "source": "MD5 hash of the plaintext string \"test\" — a non-malicious, widely-referenced test hash with no malware associations"
+  }
+]

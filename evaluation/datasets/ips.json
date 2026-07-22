@@ -1,0 +1,16 @@
+[
+  { "value": "8.8.8.8",          "label": "CLEAN", "category": "public-dns",       "source": "Google Public DNS" },
+  { "value": "1.1.1.1",          "label": "CLEAN", "category": "public-dns",       "source": "Cloudflare Public DNS" },
+  { "value": "9.9.9.9",          "label": "CLEAN", "category": "public-dns",       "source": "Quad9 Public DNS" },
+  { "value": "208.67.222.222",   "label": "CLEAN", "category": "public-dns",       "source": "OpenDNS" },
+  { "value": "140.82.112.3",     "label": "CLEAN", "category": "major-service",    "source": "GitHub infrastructure" },
+  { "value": "151.101.1.140",    "label": "CLEAN", "category": "cdn",              "source": "Fastly CDN" },
+  { "value": "13.107.42.14",     "label": "CLEAN", "category": "major-service",    "source": "Microsoft infrastructure" },
+  { "value": "172.217.16.142",   "label": "CLEAN", "category": "major-service",    "source": "Google infrastructure" },
+  { "value": "185.220.101.45",   "label": "MALICIOUS", "category": "tor-exit-node", "source": "Public Tor exit node directory" },
+  { "value": "185.220.101.4",    "label": "MALICIOUS", "category": "tor-exit-node", "source": "Public Tor exit node directory" },
+  { "value": "185.220.100.255",  "label": "MALICIOUS", "category": "tor-exit-node", "source": "Public Tor exit node directory" },
+  { "value": "23.129.64.131",    "label": "SUSPICIOUS", "category": "tor-relay",   "source": "Public Tor relay directory" },
+  { "value": "45.155.205.233",   "label": "SUSPICIOUS", "category": "known-scanner", "source": "Internet-wide scanning service IP range" },
+  { "value": "192.241.220.97",   "label": "SUSPICIOUS", "category": "known-scanner", "source": "Internet-wide scanning service IP range" }
+]

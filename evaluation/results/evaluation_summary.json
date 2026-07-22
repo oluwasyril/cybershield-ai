@@ -1,0 +1,457 @@
+{
+  "domain": {
+    "aiMetrics": {
+      "accuracy": 0.75,
+      "macroPrecision": 0.6761904761904761,
+      "macroRecall": 0.6761904761904761,
+      "macroF1": 0.6666666666666666,
+      "perClass": [
+        {
+          "class": "MALICIOUS",
+          "tp": 3,
+          "fp": 4,
+          "fn": 2,
+          "tn": 15,
+          "precision": 0.42857142857142855,
+          "recall": 0.6,
+          "f1": 0.5
+        },
+        {
+          "class": "SUSPICIOUS",
+          "tp": 3,
+          "fp": 2,
+          "fn": 4,
+          "tn": 15,
+          "precision": 0.6,
+          "recall": 0.42857142857142855,
+          "f1": 0.5
+        },
+        {
+          "class": "CLEAN",
+          "tp": 12,
+          "fp": 0,
+          "fn": 0,
+          "tn": 12,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        }
+      ],
+      "totalSamples": 24,
+      "validSamples": 24,
+      "errors": 0
+    },
+    "baselineMetrics": {
+      "accuracy": 0.7083333333333334,
+      "macroPrecision": 0.7908496732026143,
+      "macroRecall": 0.5904761904761905,
+      "macroF1": 0.5921013852048335,
+      "perClass": [
+        {
+          "class": "MALICIOUS",
+          "tp": 1,
+          "fp": 0,
+          "fn": 4,
+          "tn": 19,
+          "precision": 1,
+          "recall": 0.2,
+          "f1": 0.33333333333333337
+        },
+        {
+          "class": "SUSPICIOUS",
+          "tp": 4,
+          "fp": 2,
+          "fn": 3,
+          "tn": 15,
+          "precision": 0.6666666666666666,
+          "recall": 0.5714285714285714,
+          "f1": 0.6153846153846153
+        },
+        {
+          "class": "CLEAN",
+          "tp": 12,
+          "fp": 5,
+          "fn": 0,
+          "tn": 7,
+          "precision": 0.7058823529411765,
+          "recall": 1,
+          "f1": 0.8275862068965517
+        }
+      ],
+      "totalSamples": 24,
+      "validSamples": 24,
+      "errors": 0
+    },
+    "latency": {
+      "avgMs": 7857,
+      "medianMs": 3749,
+      "p95Ms": 19373,
+      "minMs": 1328,
+      "maxMs": 19501
+    }
+  },
+  "ip": {
+    "aiMetrics": {
+      "accuracy": 0.7857142857142857,
+      "macroPrecision": 0.75,
+      "macroRecall": 0.8055555555555555,
+      "macroF1": 0.7619047619047619,
+      "perClass": [
+        {
+          "class": "MALICIOUS",
+          "tp": 3,
+          "fp": 1,
+          "fn": 0,
+          "tn": 10,
+          "precision": 0.75,
+          "recall": 1,
+          "f1": 0.8571428571428571
+        },
+        {
+          "class": "SUSPICIOUS",
+          "tp": 2,
+          "fp": 2,
+          "fn": 1,
+          "tn": 9,
+          "precision": 0.5,
+          "recall": 0.6666666666666666,
+          "f1": 0.5714285714285715
+        },
+        {
+          "class": "CLEAN",
+          "tp": 6,
+          "fp": 0,
+          "fn": 2,
+          "tn": 6,
+          "precision": 1,
+          "recall": 0.75,
+          "f1": 0.8571428571428571
+        }
+      ],
+      "totalSamples": 14,
+      "validSamples": 14,
+      "errors": 0
+    },
+    "baselineMetrics": {
+      "accuracy": 0.7857142857142857,
+      "macroPrecision": 0.5166666666666667,
+      "macroRecall": 0.6666666666666666,
+      "macroF1": 0.582010582010582,
+      "perClass": [
+        {
+          "class": "MALICIOUS",
+          "tp": 3,
+          "fp": 1,
+          "fn": 0,
+          "tn": 10,
+          "precision": 0.75,
+          "recall": 1,
+          "f1": 0.8571428571428571
+        },
+        {
+          "class": "SUSPICIOUS",
+          "tp": 0,
+          "fp": 0,
+          "fn": 3,
+          "tn": 11,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "class": "CLEAN",
+          "tp": 8,
+          "fp": 2,
+          "fn": 0,
+          "tn": 4,
+          "precision": 0.8,
+          "recall": 1,
+          "f1": 0.888888888888889
+        }
+      ],
+      "totalSamples": 14,
+      "validSamples": 14,
+      "errors": 0
+    },
+    "latency": {
+      "avgMs": 1303,
+      "medianMs": 1342,
+      "p95Ms": 1513,
+      "minMs": 882,
+      "maxMs": 1513
+    }
+  },
+  "email": {
+    "aiMetrics": {
+      "accuracy": 0.6363636363636364,
+      "macroPrecision": 0.5,
+      "macroRecall": 0.5333333333333333,
+      "macroF1": 0.47222222222222215,
+      "perClass": [
+        {
+          "class": "MALICIOUS",
+          "tp": 4,
+          "fp": 4,
+          "fn": 0,
+          "tn": 3,
+          "precision": 0.5,
+          "recall": 1,
+          "f1": 0.6666666666666666
+        },
+        {
+          "class": "SUSPICIOUS",
+          "tp": 0,
+          "fp": 0,
+          "fn": 2,
+          "tn": 9,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "class": "CLEAN",
+          "tp": 3,
+          "fp": 0,
+          "fn": 2,
+          "tn": 6,
+          "precision": 1,
+          "recall": 0.6,
+          "f1": 0.7499999999999999
+        }
+      ],
+      "totalSamples": 11,
+      "validSamples": 11,
+      "errors": 0
+    },
+    "baselineMetrics": {
+      "accuracy": 0.5454545454545454,
+      "macroPrecision": 0.7619047619047619,
+      "macroRecall": 0.65,
+      "macroF1": 0.544973544973545,
+      "perClass": [
+        {
+          "class": "MALICIOUS",
+          "tp": 3,
+          "fp": 0,
+          "fn": 1,
+          "tn": 7,
+          "precision": 1,
+          "recall": 0.75,
+          "f1": 0.8571428571428571
+        },
+        {
+          "class": "SUSPICIOUS",
+          "tp": 2,
+          "fp": 5,
+          "fn": 0,
+          "tn": 4,
+          "precision": 0.2857142857142857,
+          "recall": 1,
+          "f1": 0.4444444444444445
+        },
+        {
+          "class": "CLEAN",
+          "tp": 1,
+          "fp": 0,
+          "fn": 4,
+          "tn": 6,
+          "precision": 1,
+          "recall": 0.2,
+          "f1": 0.33333333333333337
+        }
+      ],
+      "totalSamples": 11,
+      "validSamples": 11,
+      "errors": 0
+    },
+    "latency": {
+      "avgMs": 1976,
+      "medianMs": 2076,
+      "p95Ms": 2406,
+      "minMs": 1435,
+      "maxMs": 2406
+    }
+  },
+  "hash": {
+    "aiMetrics": {
+      "accuracy": 1,
+      "macroPrecision": 0.6666666666666666,
+      "macroRecall": 0.6666666666666666,
+      "macroF1": 0.6666666666666666,
+      "perClass": [
+        {
+          "class": "MALICIOUS",
+          "tp": 5,
+          "fp": 0,
+          "fn": 0,
+          "tn": 4,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        {
+          "class": "SUSPICIOUS",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "tn": 9,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "class": "CLEAN",
+          "tp": 4,
+          "fp": 0,
+          "fn": 0,
+          "tn": 5,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        }
+      ],
+      "totalSamples": 10,
+      "validSamples": 9,
+      "errors": 1
+    },
+    "baselineMetrics": {
+      "accuracy": 1,
+      "macroPrecision": 0.6666666666666666,
+      "macroRecall": 0.6666666666666666,
+      "macroF1": 0.6666666666666666,
+      "perClass": [
+        {
+          "class": "MALICIOUS",
+          "tp": 5,
+          "fp": 0,
+          "fn": 0,
+          "tn": 4,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        {
+          "class": "SUSPICIOUS",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "tn": 9,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "class": "CLEAN",
+          "tp": 4,
+          "fp": 0,
+          "fn": 0,
+          "tn": 5,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        }
+      ],
+      "totalSamples": 10,
+      "validSamples": 9,
+      "errors": 1
+    },
+    "latency": {
+      "avgMs": 1958,
+      "medianMs": 1628,
+      "p95Ms": 3776,
+      "minMs": 1364,
+      "maxMs": 3776
+    }
+  },
+  "header": {
+    "aiMetrics": {
+      "accuracy": 0.9090909090909091,
+      "macroPrecision": 0.9444444444444445,
+      "macroRecall": 0.8888888888888888,
+      "macroF1": 0.903030303030303,
+      "perClass": [
+        {
+          "class": "MALICIOUS",
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "tn": 8,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        {
+          "class": "SUSPICIOUS",
+          "tp": 2,
+          "fp": 0,
+          "fn": 1,
+          "tn": 8,
+          "precision": 1,
+          "recall": 0.6666666666666666,
+          "f1": 0.8
+        },
+        {
+          "class": "CLEAN",
+          "tp": 5,
+          "fp": 1,
+          "fn": 0,
+          "tn": 5,
+          "precision": 0.8333333333333334,
+          "recall": 1,
+          "f1": 0.9090909090909091
+        }
+      ],
+      "totalSamples": 11,
+      "validSamples": 11,
+      "errors": 0
+    },
+    "baselineMetrics": {
+      "accuracy": 0.9090909090909091,
+      "macroPrecision": 0.9444444444444445,
+      "macroRecall": 0.8888888888888888,
+      "macroF1": 0.903030303030303,
+      "perClass": [
+        {
+          "class": "MALICIOUS",
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "tn": 8,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        {
+          "class": "SUSPICIOUS",
+          "tp": 2,
+          "fp": 0,
+          "fn": 1,
+          "tn": 8,
+          "precision": 1,
+          "recall": 0.6666666666666666,
+          "f1": 0.8
+        },
+        {
+          "class": "CLEAN",
+          "tp": 5,
+          "fp": 1,
+          "fn": 0,
+          "tn": 5,
+          "precision": 0.8333333333333334,
+          "recall": 1,
+          "f1": 0.9090909090909091
+        }
+      ],
+      "totalSamples": 11,
+      "validSamples": 11,
+      "errors": 0
+    },
+    "latency": {
+      "avgMs": 1292,
+      "medianMs": 1324,
+      "p95Ms": 1550,
+      "minMs": 1065,
+      "maxMs": 1550
+    }
+  }
+}

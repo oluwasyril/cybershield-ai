@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────
-// auth.js — Complete authentication logic
+// auth.js  -  Complete authentication logic
 // Email/password + Google OAuth
 // SendGrid emails via backend
 // 30-minute session timeout
@@ -66,11 +66,11 @@ onAuthStateChanged(auth, async user => {
       }
       recordActivity();
     } else if (isLogin) {
-      // Already signed in — skip the login page
+      // Already signed in  -  skip the login page
       window.location.href = 'dashboard.html';
     }
   } else if (!user && isDashboard) {
-    // Not authenticated — block dashboard
+    // Not authenticated  -  block dashboard
     window.location.href = 'index.html';
   }
 });
@@ -149,7 +149,7 @@ async function getProfile(token) {
 }
 
 // ═══════════════════════════════════════════════════════
-// LOGIN APP — Alpine component for index.html
+// LOGIN APP  -  Alpine component for index.html
 // ═══════════════════════════════════════════════════════
 
 window.loginApp = function () {
@@ -177,7 +177,7 @@ window.loginApp = function () {
 
     // ── Google new-user profile completion modal ──
     // Only shown when a Google account has no profile yet.
-    // On the LOGIN page this should NOT happen —
+    // On the LOGIN page this should NOT happen  - 
     // we block and tell them to sign up instead.
     showProfileModal : false,
     googleUser       : null,
@@ -249,7 +249,7 @@ window.loginApp = function () {
 
         } else {
           const warning = this.failedAttempts === 2
-            ? ' — One more failure will trigger an automatic password reset.'
+            ? '  -  One more failure will trigger an automatic password reset.'
             : '';
           this.errorMessage = mapError(err.code) + warning;
         }
@@ -282,11 +282,11 @@ window.loginApp = function () {
         const profile = await getProfile(token);
 
         if (profile) {
-          // Registered user — sign in and go to dashboard
+          // Registered user  -  sign in and go to dashboard
           recordActivity();
           window.location.href = 'dashboard.html';
         } else {
-          // No profile — this account has not signed up yet
+          // No profile  -  this account has not signed up yet
           // Sign them out immediately and show a clear message
           await signOut(auth);
           this.errorMessage =
@@ -325,10 +325,10 @@ window.loginApp = function () {
           headers: { 'Content-Type': 'application/json' },
           body   : JSON.stringify({ email: this.forgotEmail.trim() })
         });
-        // Always show success — prevents user enumeration
+        // Always show success  -  prevents user enumeration
         this.forgotSent = true;
       } catch (_) {
-        // Still show success on network error — same reason
+        // Still show success on network error  -  same reason
         this.forgotSent = true;
       } finally {
         this.forgotLoading = false;
@@ -338,7 +338,7 @@ window.loginApp = function () {
 };
 
 // ═══════════════════════════════════════════════════════
-// SIGNUP APP — Alpine component for signup.html
+// SIGNUP APP  -  Alpine component for signup.html
 // ═══════════════════════════════════════════════════════
 
 window.signupApp = function () {
@@ -480,10 +480,10 @@ window.signupApp = function () {
 
         if (!emailData.success) {
           console.warn('[SIGNUP] Verification email failed:', emailData.error);
-          // Account was created — still show success but warn in console
+          // Account was created  -  still show success but warn in console
         }
 
-        // [4] Sign out — must verify email before accessing the platform
+        // [4] Sign out  -  must verify email before accessing the platform
         await signOut(auth);
         this.registrationSuccess = true;
 
@@ -523,11 +523,11 @@ window.signupApp = function () {
         const profile = await getProfile(token);
 
         if (profile) {
-          // Already registered — go to dashboard
+          // Already registered  -  go to dashboard
           recordActivity();
           window.location.href = 'dashboard.html';
         } else {
-          // New Google user — collect username and country
+          // New Google user  -  collect username and country
           // Name and email come from their Google account
           this.googleUser = {
             uid        : user.uid,
@@ -584,7 +584,7 @@ window.signupApp = function () {
           return;
         }
 
-        // Profile saved — go to dashboard
+        // Profile saved  -  go to dashboard
         recordActivity();
         window.location.href = 'dashboard.html';
 

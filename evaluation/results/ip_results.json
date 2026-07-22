@@ -1,0 +1,156 @@
+[
+  {
+    "value": "8.8.8.8",
+    "expected": "CLEAN",
+    "aiVerdict": "CLEAN",
+    "aiRiskScore": 0,
+    "baselineVerdict": "CLEAN",
+    "baselineRiskScore": 15,
+    "scanDurationMs": 1427,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "1.1.1.1",
+    "expected": "CLEAN",
+    "aiVerdict": "CLEAN",
+    "aiRiskScore": 0,
+    "baselineVerdict": "CLEAN",
+    "baselineRiskScore": 15,
+    "scanDurationMs": 1335,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "9.9.9.9",
+    "expected": "CLEAN",
+    "aiVerdict": "SUSPICIOUS",
+    "aiRiskScore": 40,
+    "baselineVerdict": "CLEAN",
+    "baselineRiskScore": 8,
+    "scanDurationMs": 1513,
+    "aiCorrect": false,
+    "baselineCorrect": true
+  },
+  {
+    "value": "208.67.222.222",
+    "expected": "CLEAN",
+    "aiVerdict": "CLEAN",
+    "aiRiskScore": 0,
+    "baselineVerdict": "CLEAN",
+    "baselineRiskScore": 0,
+    "scanDurationMs": 1154,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "140.82.112.3",
+    "expected": "CLEAN",
+    "aiVerdict": "CLEAN",
+    "aiRiskScore": 10,
+    "baselineVerdict": "CLEAN",
+    "baselineRiskScore": 0,
+    "scanDurationMs": 1263,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "151.101.1.140",
+    "expected": "CLEAN",
+    "aiVerdict": "SUSPICIOUS",
+    "aiRiskScore": 40,
+    "baselineVerdict": "CLEAN",
+    "baselineRiskScore": 0,
+    "scanDurationMs": 1368,
+    "aiCorrect": false,
+    "baselineCorrect": true
+  },
+  {
+    "value": "13.107.42.14",
+    "expected": "CLEAN",
+    "aiVerdict": "CLEAN",
+    "aiRiskScore": 0,
+    "baselineVerdict": "CLEAN",
+    "baselineRiskScore": 0,
+    "scanDurationMs": 882,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "172.217.16.142",
+    "expected": "CLEAN",
+    "aiVerdict": "CLEAN",
+    "aiRiskScore": 10,
+    "baselineVerdict": "CLEAN",
+    "baselineRiskScore": 0,
+    "scanDurationMs": 1283,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "185.220.101.45",
+    "expected": "MALICIOUS",
+    "aiVerdict": "MALICIOUS",
+    "aiRiskScore": 90,
+    "baselineVerdict": "MALICIOUS",
+    "baselineRiskScore": 100,
+    "scanDurationMs": 1377,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "185.220.101.4",
+    "expected": "MALICIOUS",
+    "aiVerdict": "MALICIOUS",
+    "aiRiskScore": 90,
+    "baselineVerdict": "MALICIOUS",
+    "baselineRiskScore": 100,
+    "scanDurationMs": 1365,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "185.220.100.255",
+    "expected": "MALICIOUS",
+    "aiVerdict": "MALICIOUS",
+    "aiRiskScore": 90,
+    "baselineVerdict": "MALICIOUS",
+    "baselineRiskScore": 100,
+    "scanDurationMs": 1482,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "23.129.64.131",
+    "expected": "SUSPICIOUS",
+    "aiVerdict": "MALICIOUS",
+    "aiRiskScore": 85,
+    "baselineVerdict": "MALICIOUS",
+    "baselineRiskScore": 83,
+    "scanDurationMs": 1274,
+    "aiCorrect": false,
+    "baselineCorrect": false
+  },
+  {
+    "value": "45.155.205.233",
+    "expected": "SUSPICIOUS",
+    "aiVerdict": "SUSPICIOUS",
+    "aiRiskScore": 40,
+    "baselineVerdict": "CLEAN",
+    "baselineRiskScore": 6,
+    "scanDurationMs": 1172,
+    "aiCorrect": true,
+    "baselineCorrect": false
+  },
+  {
+    "value": "192.241.220.97",
+    "expected": "SUSPICIOUS",
+    "aiVerdict": "SUSPICIOUS",
+    "aiRiskScore": 40,
+    "baselineVerdict": "CLEAN",
+    "baselineRiskScore": 0,
+    "scanDurationMs": 1342,
+    "aiCorrect": true,
+    "baselineCorrect": false
+  }
+]

@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────
-// groqAnalysis.js — AI Threat Assessment
+// groqAnalysis.js  -  AI Threat Assessment
 // Uses Groq API (LLaMA 3) to analyse scanner
 // intelligence and produce structured verdicts.
 // MITRE ATT&CK mapping attached to every result.
@@ -11,27 +11,30 @@ const { mapToATTACK } = require('./mitreMapper');
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 const SYSTEM_PROMPT = `
-You are an expert cybersecurity analyst inside an automated SOC threat detection platform.
-Analyse threat intelligence data and produce a structured threat assessment.
+You are an expert cybersecurity analyst inside an automated threat detection platform
+used by non-technical staff at small businesses who have no security training.
+Your job is to analyse threat intelligence data and explain the findings in plain,
+human language that a non-specialist can understand and act on immediately.
 
 RULES:
 - Respond ONLY with valid JSON. No markdown, no text outside the JSON.
 - Base verdict ONLY on the data provided.
 - Be conservative: when uncertain, classify higher risk.
+- Write as a real human analyst would speak to a colleague  -  clear, direct, no jargon.
 
 RESPONSE STRUCTURE (exactly):
 {
   "verdict": "CLEAN" | "SUSPICIOUS" | "MALICIOUS",
   "riskScore": <integer 0-100>,
   "confidenceLevel": "HIGH" | "MEDIUM" | "LOW",
-  "summary": "<2-7 sentence plain English explanation>",
+  "summary": "<Write 4 to 6 sentences in plain English. First sentence: state clearly what this is and whether it is safe. Second sentence: explain the most important evidence that led to this conclusion. Third sentence: explain what this kind of threat does or why it matters to the user. Fourth sentence: tell the user exactly what they should do right now  -  whether that is nothing, to be cautious, or to act immediately. If MALICIOUS or SUSPICIOUS, be specific about the risk.>",
   "recommendedAction": "ALLOW" | "MONITOR" | "BLOCK" | "ESCALATE",
   "keyIndicators": ["<indicator 1>", "<indicator 2>", "<indicator 3>"],
-  "analystNotes": "<additional context for human analyst>",
+  "analystNotes": "<Write 2 to 4 sentences of additional context. Explain the technical reasoning behind the verdict in a way that helps the user understand why this specific combination of signals triggered this classification. If the verdict is CLEAN, reassure the user and tell them what normal looks like. If SUSPICIOUS or MALICIOUS, explain what the attacker is likely trying to do and how to stay safe going forward.>",
   "threatCategory": "<e.g. Phishing, Malware, Spam, Clean, Unknown>"
 }
 
-SCORING — the riskScore MUST determine the verdict using these exact bands:
+SCORING  -  the riskScore MUST determine the verdict using these exact bands:
 0-20:   verdict = "CLEAN"      (no credible threat indicators)
 21-60:  verdict = "SUSPICIOUS" (some indicators present, not conclusive)
 61-100: verdict = "MALICIOUS"  (multiple independent severe indicators present)
@@ -46,8 +49,14 @@ riskScore MUST be 61 or higher and verdict MUST be "MALICIOUS":
 A SUSPICIOUS verdict is reserved for cases with only ONE weak or ambiguous
 indicator (e.g. a single low-confidence detection with no corroborating signal).
 When in doubt between SUSPICIOUS and MALICIOUS with multiple corroborating
-indicators present, choose MALICIOUS — this platform is conservative by design
-and a false MALICIOUS is preferable to a missed threat.
+indicators present, choose MALICIOUS.
+
+WRITING STYLE EXAMPLES:
+- BAD: "The domain exhibits multiple threat indicators consistent with phishing activity."
+- GOOD: "This domain is pretending to be PayPal but it is not. The name has been altered slightly to trick people into thinking it is real, and it was only registered 3 days ago which is a strong sign it was created specifically for fraud. Do not click any links from this domain, do not enter any passwords or payment details, and block it on your email system immediately."
+
+- BAD: "IP address shows no malicious indicators across queried sources."
+- GOOD: "This IP address looks safe. It belongs to Google's public DNS infrastructure, which is a trusted and widely used service. You do not need to take any action."
 `;
 
 const analyseThreat = async (target, scanType, intelligenceData) => {
@@ -94,7 +103,7 @@ const analyseThreat = async (target, scanType, intelligenceData) => {
     try {
       const intel = intelligenceData.intelligence || intelligenceData;
       mitre = mapToATTACK(scanType, intel);
-    } catch { /* silent — mitre is optional */ }
+    } catch { /* silent  -  mitre is optional */ }
     // ─────────────────────────────────────────
 
     return {
@@ -107,7 +116,7 @@ const analyseThreat = async (target, scanType, intelligenceData) => {
       summary          : 'AI analysis could not be completed. Manual review required.',
       recommendedAction: 'MONITOR',
       keyIndicators    : [],
-      analystNotes     : 'Automated analysis failed — escalate to human analyst.',
+      analystNotes     : 'Automated analysis failed  -  escalate to human analyst.',
       threatCategory   : 'Unknown',
       mitre             // ← still attached even on AI failure
     };

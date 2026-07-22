@@ -1,0 +1,123 @@
+[
+  {
+    "value": "Your monthly statement is ready",
+    "expected": "CLEAN",
+    "aiVerdict": "CLEAN",
+    "aiRiskScore": 0,
+    "baselineVerdict": "CLEAN",
+    "baselineRiskScore": 0,
+    "scanDurationMs": 1324,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "Receipt for your recent payment",
+    "expected": "CLEAN",
+    "aiVerdict": "CLEAN",
+    "aiRiskScore": 0,
+    "baselineVerdict": "CLEAN",
+    "baselineRiskScore": 0,
+    "scanDurationMs": 1153,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "Reminder: annual leave submission deadli",
+    "expected": "CLEAN",
+    "aiVerdict": "CLEAN",
+    "aiRiskScore": 0,
+    "baselineVerdict": "CLEAN",
+    "baselineRiskScore": 0,
+    "scanDurationMs": 1065,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "Today's top stories",
+    "expected": "CLEAN",
+    "aiVerdict": "CLEAN",
+    "aiRiskScore": 0,
+    "baselineVerdict": "CLEAN",
+    "baselineRiskScore": 0,
+    "scanDurationMs": 1278,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "Your order has shipped",
+    "expected": "CLEAN",
+    "aiVerdict": "CLEAN",
+    "aiRiskScore": 0,
+    "baselineVerdict": "CLEAN",
+    "baselineRiskScore": 0,
+    "scanDurationMs": 1379,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "URGENT: Your account has been limited",
+    "expected": "MALICIOUS",
+    "aiVerdict": "MALICIOUS",
+    "aiRiskScore": 100,
+    "baselineVerdict": "MALICIOUS",
+    "baselineRiskScore": 100,
+    "scanDurationMs": 1372,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "Unusual sign-in activity detected",
+    "expected": "MALICIOUS",
+    "aiVerdict": "MALICIOUS",
+    "aiRiskScore": 100,
+    "baselineVerdict": "MALICIOUS",
+    "baselineRiskScore": 100,
+    "scanDurationMs": 1386,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "Action required: verify your recent tran",
+    "expected": "MALICIOUS",
+    "aiVerdict": "MALICIOUS",
+    "aiRiskScore": 100,
+    "baselineVerdict": "MALICIOUS",
+    "baselineRiskScore": 90,
+    "scanDurationMs": 1375,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "Special offer just for you",
+    "expected": "SUSPICIOUS",
+    "aiVerdict": "SUSPICIOUS",
+    "aiRiskScore": 45,
+    "baselineVerdict": "SUSPICIOUS",
+    "baselineRiskScore": 40,
+    "scanDurationMs": 1550,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "Reminder: your registration is pending",
+    "expected": "SUSPICIOUS",
+    "aiVerdict": "SUSPICIOUS",
+    "aiRiskScore": 40,
+    "baselineVerdict": "SUSPICIOUS",
+    "baselineRiskScore": 25,
+    "scanDurationMs": 1204,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "Invoice #4471 attached",
+    "expected": "SUSPICIOUS",
+    "aiVerdict": "CLEAN",
+    "aiRiskScore": 0,
+    "baselineVerdict": "CLEAN",
+    "baselineRiskScore": 0,
+    "scanDurationMs": 1131,
+    "aiCorrect": false,
+    "baselineCorrect": false
+  }
+]

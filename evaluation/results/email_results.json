@@ -1,0 +1,123 @@
+[
+  {
+    "value": "press@bbc.co.uk",
+    "expected": "CLEAN",
+    "aiVerdict": "MALICIOUS",
+    "aiRiskScore": 85,
+    "baselineVerdict": "SUSPICIOUS",
+    "baselineRiskScore": 41,
+    "scanDurationMs": 1958,
+    "aiCorrect": false,
+    "baselineCorrect": false
+  },
+  {
+    "value": "support@github.com",
+    "expected": "CLEAN",
+    "aiVerdict": "CLEAN",
+    "aiRiskScore": 10,
+    "baselineVerdict": "SUSPICIOUS",
+    "baselineRiskScore": 30,
+    "scanDurationMs": 1654,
+    "aiCorrect": true,
+    "baselineCorrect": false
+  },
+  {
+    "value": "info@gov.uk",
+    "expected": "CLEAN",
+    "aiVerdict": "MALICIOUS",
+    "aiRiskScore": 96,
+    "baselineVerdict": "SUSPICIOUS",
+    "baselineRiskScore": 27,
+    "scanDurationMs": 1476,
+    "aiCorrect": false,
+    "baselineCorrect": false
+  },
+  {
+    "value": "admissions@roehampton.ac.uk",
+    "expected": "CLEAN",
+    "aiVerdict": "CLEAN",
+    "aiRiskScore": 10,
+    "baselineVerdict": "CLEAN",
+    "baselineRiskScore": 18,
+    "scanDurationMs": 2195,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "noreply@google.com",
+    "expected": "CLEAN",
+    "aiVerdict": "CLEAN",
+    "aiRiskScore": 10,
+    "baselineVerdict": "SUSPICIOUS",
+    "baselineRiskScore": 30,
+    "scanDurationMs": 2214,
+    "aiCorrect": true,
+    "baselineCorrect": false
+  },
+  {
+    "value": "test@guerrillamail.com",
+    "expected": "MALICIOUS",
+    "aiVerdict": "MALICIOUS",
+    "aiRiskScore": 90,
+    "baselineVerdict": "MALICIOUS",
+    "baselineRiskScore": 75,
+    "scanDurationMs": 2076,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "user@mailinator.com",
+    "expected": "MALICIOUS",
+    "aiVerdict": "MALICIOUS",
+    "aiRiskScore": 90,
+    "baselineVerdict": "MALICIOUS",
+    "baselineRiskScore": 75,
+    "scanDurationMs": 2400,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "random123@10minutemail.com",
+    "expected": "MALICIOUS",
+    "aiVerdict": "MALICIOUS",
+    "aiRiskScore": 100,
+    "baselineVerdict": "MALICIOUS",
+    "baselineRiskScore": 60,
+    "scanDurationMs": 1574,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "test@tempmail.com",
+    "expected": "MALICIOUS",
+    "aiVerdict": "MALICIOUS",
+    "aiRiskScore": 80,
+    "baselineVerdict": "SUSPICIOUS",
+    "baselineRiskScore": 57,
+    "scanDurationMs": 2406,
+    "aiCorrect": true,
+    "baselineCorrect": false
+  },
+  {
+    "value": "verify@paypa1-secure.com",
+    "expected": "SUSPICIOUS",
+    "aiVerdict": "MALICIOUS",
+    "aiRiskScore": 90,
+    "baselineVerdict": "SUSPICIOUS",
+    "baselineRiskScore": 35,
+    "scanDurationMs": 1435,
+    "aiCorrect": false,
+    "baselineCorrect": true
+  },
+  {
+    "value": "support@amaz0n-help.com",
+    "expected": "SUSPICIOUS",
+    "aiVerdict": "MALICIOUS",
+    "aiRiskScore": 90,
+    "baselineVerdict": "SUSPICIOUS",
+    "baselineRiskScore": 35,
+    "scanDurationMs": 2352,
+    "aiCorrect": false,
+    "baselineCorrect": true
+  }
+]

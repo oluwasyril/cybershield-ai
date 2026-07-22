@@ -1,0 +1,108 @@
+[
+  {
+    "value": "44d88612fea8a8f36de82e1278abb02f",
+    "expected": "MALICIOUS",
+    "aiVerdict": "MALICIOUS",
+    "aiRiskScore": 82,
+    "baselineVerdict": "MALICIOUS",
+    "baselineRiskScore": 76,
+    "scanDurationMs": 1628,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "3395856ce81f2b7382dee72602f798b642f14140",
+    "expected": "MALICIOUS",
+    "aiVerdict": "MALICIOUS",
+    "aiRiskScore": 82,
+    "baselineVerdict": "MALICIOUS",
+    "baselineRiskScore": 76,
+    "scanDurationMs": 1466,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0",
+    "expected": "MALICIOUS",
+    "error": "Invalid hash format. Please provide a valid MD5 (32), SHA1 (40), or SHA256 (64) character hash.",
+    "aiVerdict": "ERROR",
+    "baselineVerdict": "ERROR"
+  },
+  {
+    "value": "84c82835a5d21bbcf75a61706d8ab549",
+    "expected": "MALICIOUS",
+    "aiVerdict": "MALICIOUS",
+    "aiRiskScore": 98,
+    "baselineVerdict": "MALICIOUS",
+    "baselineRiskScore": 77,
+    "scanDurationMs": 1395,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "ed01ebfbc9eb5bbea545af4d01bf5f1071661840480439c6e5babe8e080e41aa",
+    "expected": "MALICIOUS",
+    "aiVerdict": "MALICIOUS",
+    "aiRiskScore": 93,
+    "baselineVerdict": "MALICIOUS",
+    "baselineRiskScore": 77,
+    "scanDurationMs": 3776,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "db349b97c37d22f5ea1d1841e3c89eb4",
+    "expected": "MALICIOUS",
+    "aiVerdict": "MALICIOUS",
+    "aiRiskScore": 93,
+    "baselineVerdict": "MALICIOUS",
+    "baselineRiskScore": 82,
+    "scanDurationMs": 1879,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "d41d8cd98f00b204e9800998ecf8427e",
+    "expected": "CLEAN",
+    "aiVerdict": "CLEAN",
+    "aiRiskScore": 5,
+    "baselineVerdict": "CLEAN",
+    "baselineRiskScore": 0,
+    "scanDurationMs": 1415,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "expected": "CLEAN",
+    "aiVerdict": "CLEAN",
+    "aiRiskScore": 5,
+    "baselineVerdict": "CLEAN",
+    "baselineRiskScore": 0,
+    "scanDurationMs": 2584,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "5f4dcc3b5aa765d61d8327deb882cf99",
+    "expected": "CLEAN",
+    "aiVerdict": "CLEAN",
+    "aiRiskScore": 5,
+    "baselineVerdict": "CLEAN",
+    "baselineRiskScore": 0,
+    "scanDurationMs": 1364,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  },
+  {
+    "value": "098f6bcd4621d373cade4e832627b4f6",
+    "expected": "CLEAN",
+    "aiVerdict": "CLEAN",
+    "aiRiskScore": 5,
+    "baselineVerdict": "CLEAN",
+    "baselineRiskScore": 0,
+    "scanDurationMs": 2117,
+    "aiCorrect": true,
+    "baselineCorrect": true
+  }
+]

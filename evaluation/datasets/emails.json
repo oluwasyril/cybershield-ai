@@ -1,0 +1,13 @@
+[
+  { "value": "press@bbc.co.uk",              "label": "CLEAN", "category": "media",       "source": "Public BBC press contact" },
+  { "value": "support@github.com",           "label": "CLEAN", "category": "major-tech",  "source": "Public GitHub support contact" },
+  { "value": "info@gov.uk",                  "label": "CLEAN", "category": "government",  "source": "Public UK Government contact pattern" },
+  { "value": "admissions@roehampton.ac.uk",  "label": "CLEAN", "category": "education",   "source": "University of Roehampton contact pattern" },
+  { "value": "noreply@google.com",           "label": "CLEAN", "category": "major-tech",  "source": "Public Google service pattern" },
+  { "value": "test@guerrillamail.com",       "label": "MALICIOUS", "category": "disposable-email", "source": "Known disposable email provider" },
+  { "value": "user@mailinator.com",          "label": "MALICIOUS", "category": "disposable-email", "source": "Known disposable email provider" },
+  { "value": "random123@10minutemail.com",   "label": "MALICIOUS", "category": "disposable-email", "source": "Known disposable email provider" },
+  { "value": "test@tempmail.com",            "label": "MALICIOUS", "category": "disposable-email", "source": "Known disposable email provider" },
+  { "value": "verify@paypa1-secure.com",     "label": "SUSPICIOUS", "category": "phishing-domain", "source": "Manually constructed — PayPal lookalike domain" },
+  { "value": "support@amaz0n-help.com",      "label": "SUSPICIOUS", "category": "phishing-domain", "source": "Manually constructed — Amazon lookalike domain" }
+]

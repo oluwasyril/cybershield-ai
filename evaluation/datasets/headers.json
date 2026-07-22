@@ -1,0 +1,79 @@
+[
+  {
+    "label": "CLEAN",
+    "category": "spf-dkim-dmarc-pass",
+    "source": "Manually constructed — fully authenticated legitimate header pattern",
+    "headers": "Received: from mail-relay.legitcorp.com (mail-relay.legitcorp.com [203.0.113.10])\n\tby mx.recipient.com with ESMTPS id abc123\n\tfor <user@recipient.com>; Mon, 15 Jun 2026 09:12:33 +0000 (UTC)\nAuthentication-Results: mx.recipient.com;\n\tspf=pass smtp.mailfrom=notifications@legitcorp.com;\n\tdkim=pass header.d=legitcorp.com;\n\tdmarc=pass header.from=legitcorp.com\nFrom: \"LegitCorp Notifications\" <notifications@legitcorp.com>\nTo: user@recipient.com\nSubject: Your monthly statement is ready\nDate: Mon, 15 Jun 2026 09:12:30 +0000\nMessage-ID: <CADx7gP@mail-relay.legitcorp.com>\nReturn-Path: <notifications@legitcorp.com>",
+    "body": "Your monthly statement for June 2026 is now available in your account dashboard. Log in to view full details."
+  },
+  {
+    "label": "CLEAN",
+    "category": "spf-dkim-dmarc-pass",
+    "source": "Manually constructed — fully authenticated legitimate header pattern",
+    "headers": "Received: from smtp.cloudservice.io (smtp.cloudservice.io [198.51.100.22])\n\tby mx.recipient.com with ESMTPS id def456\n\tfor <user@recipient.com>; Tue, 16 Jun 2026 14:02:11 +0000 (UTC)\nAuthentication-Results: mx.recipient.com;\n\tspf=pass smtp.mailfrom=billing@cloudservice.io;\n\tdkim=pass header.d=cloudservice.io;\n\tdmarc=pass header.from=cloudservice.io\nFrom: \"CloudService Billing\" <billing@cloudservice.io>\nTo: user@recipient.com\nSubject: Receipt for your recent payment\nDate: Tue, 16 Jun 2026 14:02:08 +0000\nMessage-ID: <99k2x@smtp.cloudservice.io>\nReturn-Path: <billing@cloudservice.io>",
+    "body": "Thank you for your payment of $49.00. A copy of your invoice is attached to your account."
+  },
+  {
+    "label": "CLEAN",
+    "category": "spf-dkim-dmarc-pass",
+    "source": "Manually constructed — internal corporate header pattern",
+    "headers": "Received: from exchange01.internalcorp.local (exchange01.internalcorp.local [10.20.30.40])\n\tby mx.recipient.com with ESMTPS id ghi789\n\tfor <user@recipient.com>; Wed, 17 Jun 2026 08:45:00 +0000 (UTC)\nAuthentication-Results: mx.recipient.com;\n\tspf=pass smtp.mailfrom=hr@internalcorp.com;\n\tdkim=pass header.d=internalcorp.com;\n\tdmarc=pass header.from=internalcorp.com\nFrom: \"HR Team\" <hr@internalcorp.com>\nTo: user@recipient.com\nSubject: Reminder: annual leave submission deadline\nDate: Wed, 17 Jun 2026 08:44:55 +0000\nMessage-ID: <hr2026@exchange01.internalcorp.local>\nReturn-Path: <hr@internalcorp.com>",
+    "body": "This is a reminder that annual leave requests for the next quarter are due by the end of this month."
+  },
+  {
+    "label": "CLEAN",
+    "category": "spf-dkim-dmarc-pass",
+    "source": "Manually constructed — newsletter header pattern",
+    "headers": "Received: from esp-mailer.newsplatform.net (esp-mailer.newsplatform.net [192.0.2.55])\n\tby mx.recipient.com with ESMTPS id jkl012\n\tfor <user@recipient.com>; Thu, 18 Jun 2026 06:30:00 +0000 (UTC)\nAuthentication-Results: mx.recipient.com;\n\tspf=pass smtp.mailfrom=newsletter@newsplatform.net;\n\tdkim=pass header.d=newsplatform.net;\n\tdmarc=pass header.from=newsplatform.net\nFrom: \"Daily Brief\" <newsletter@newsplatform.net>\nTo: user@recipient.com\nSubject: Today's top stories\nDate: Thu, 18 Jun 2026 06:29:58 +0000\nMessage-ID: <brief2026@esp-mailer.newsplatform.net>\nReturn-Path: <bounce@newsplatform.net>",
+    "body": "Here are today's top headlines curated for you. Click through to read the full articles on our site."
+  },
+  {
+    "label": "CLEAN",
+    "category": "spf-dkim-dmarc-pass",
+    "source": "Manually constructed — transactional ecommerce header pattern",
+    "headers": "Received: from mta-out.retailshop.com (mta-out.retailshop.com [203.0.113.88])\n\tby mx.recipient.com with ESMTPS id mno345\n\tfor <user@recipient.com>; Fri, 19 Jun 2026 11:15:20 +0000 (UTC)\nAuthentication-Results: mx.recipient.com;\n\tspf=pass smtp.mailfrom=orders@retailshop.com;\n\tdkim=pass header.d=retailshop.com;\n\tdmarc=pass header.from=retailshop.com\nFrom: \"RetailShop Orders\" <orders@retailshop.com>\nTo: user@recipient.com\nSubject: Your order has shipped\nDate: Fri, 19 Jun 2026 11:15:18 +0000\nMessage-ID: <ship2026@mta-out.retailshop.com>\nReturn-Path: <orders@retailshop.com>",
+    "body": "Good news! Your recent order has shipped and is on its way. Track your delivery using the link in your account."
+  },
+  {
+    "label": "MALICIOUS",
+    "category": "spf-fail-spoofed-sender",
+    "source": "Manually constructed — documented spoofing pattern (failed SPF, mismatched From/Return-Path)",
+    "headers": "Received: from unknown-relay-203.suspicioushost.ru (unknown-relay-203.suspicioushost.ru [185.220.101.99])\n\tby mx.recipient.com with ESMTP id pqr678\n\tfor <user@recipient.com>; Mon, 15 Jun 2026 03:22:11 +0000 (UTC)\nAuthentication-Results: mx.recipient.com;\n\tspf=fail smtp.mailfrom=security@paypa1-alerts.com;\n\tdkim=fail header.d=paypa1-alerts.com;\n\tdmarc=fail header.from=paypal.com\nFrom: \"PayPal Security\" <security@paypal.com>\nTo: user@recipient.com\nSubject: URGENT: Your account has been limited\nDate: Mon, 15 Jun 2026 03:22:05 +0000\nMessage-ID: <x92ks@unknown-relay-203.suspicioushost.ru>\nReturn-Path: <bounce@paypa1-alerts.com>",
+    "body": "Your account has been limited due to unusual activity. Click here immediately to verify your identity and restore full access: http://paypa1-secure-verify.com/login"
+  },
+  {
+    "label": "MALICIOUS",
+    "category": "spf-fail-spoofed-sender",
+    "source": "Manually constructed — documented spoofing pattern (failed SPF and DKIM, urgency framing)",
+    "headers": "Received: from mail77.freehostbox.net (mail77.freehostbox.net [45.155.205.201])\n\tby mx.recipient.com with ESMTP id stu901\n\tfor <user@recipient.com>; Tue, 16 Jun 2026 02:10:44 +0000 (UTC)\nAuthentication-Results: mx.recipient.com;\n\tspf=fail smtp.mailfrom=no-reply@micros0ft-support.com;\n\tdkim=fail header.d=micros0ft-support.com;\n\tdmarc=fail header.from=microsoft.com\nFrom: \"Microsoft Account Team\" <no-reply@microsoft.com>\nTo: user@recipient.com\nSubject: Unusual sign-in activity detected\nDate: Tue, 16 Jun 2026 02:10:40 +0000\nMessage-ID: <ms-alert@mail77.freehostbox.net>\nReturn-Path: <bounce@micros0ft-support.com>",
+    "body": "We detected an unusual sign-in attempt on your Microsoft account from an unrecognised device. If this was not you, secure your account now: http://micros0ft-account-verify.net/secure"
+  },
+  {
+    "label": "MALICIOUS",
+    "category": "spf-dkim-fail-malicious-link",
+    "source": "Manually constructed — documented phishing pattern (auth failure plus embedded credential-harvesting link)",
+    "headers": "Received: from vps-44231.bulletproof-host.net (vps-44231.bulletproof-host.net [192.241.220.150])\n\tby mx.recipient.com with ESMTP id vwx234\n\tfor <user@recipient.com>; Wed, 17 Jun 2026 04:50:02 +0000 (UTC)\nAuthentication-Results: mx.recipient.com;\n\tspf=fail smtp.mailfrom=billing@hsbc-secure-alerts.net;\n\tdkim=fail header.d=hsbc-secure-alerts.net;\n\tdmarc=fail header.from=hsbc.co.uk\nFrom: \"HSBC Online Banking\" <billing@hsbc.co.uk>\nTo: user@recipient.com\nSubject: Action required: verify your recent transaction\nDate: Wed, 17 Jun 2026 04:49:58 +0000\nMessage-ID: <hsbc-verify@vps-44231.bulletproof-host.net>\nReturn-Path: <bounce@hsbc-secure-alerts.net>",
+    "body": "We noticed a transaction on your account that requires verification. Please confirm your details within 24 hours to avoid suspension: http://hsbc-online-banking-verify.net/login"
+  },
+  {
+    "label": "SUSPICIOUS",
+    "category": "dmarc-fail-only",
+    "source": "Manually constructed — single weak indicator (DMARC fail, SPF/DKIM pass)",
+    "headers": "Received: from relay-9.marketingtool.io (relay-9.marketingtool.io [198.51.100.190])\n\tby mx.recipient.com with ESMTPS id yza567\n\tfor <user@recipient.com>; Thu, 18 Jun 2026 10:05:30 +0000 (UTC)\nAuthentication-Results: mx.recipient.com;\n\tspf=pass smtp.mailfrom=campaign@marketingtool.io;\n\tdkim=pass header.d=marketingtool.io;\n\tdmarc=fail header.from=partnerbrand.com\nFrom: \"Partner Offers\" <deals@partnerbrand.com>\nTo: user@recipient.com\nSubject: Special offer just for you\nDate: Thu, 18 Jun 2026 10:05:25 +0000\nMessage-ID: <campaign99@relay-9.marketingtool.io>\nReturn-Path: <campaign@marketingtool.io>",
+    "body": "As a valued customer, you qualify for an exclusive discount this week. Click to view your personalised offer."
+  },
+  {
+    "label": "SUSPICIOUS",
+    "category": "spf-softfail-only",
+    "source": "Manually constructed — single weak indicator (SPF softfail, no other failures)",
+    "headers": "Received: from outbound-mailer.eventplatform.com (outbound-mailer.eventplatform.com [203.0.113.140])\n\tby mx.recipient.com with ESMTPS id bcd890\n\tfor <user@recipient.com>; Fri, 19 Jun 2026 13:40:12 +0000 (UTC)\nAuthentication-Results: mx.recipient.com;\n\tspf=softfail smtp.mailfrom=updates@eventplatform.com;\n\tdkim=pass header.d=eventplatform.com;\n\tdmarc=pass header.from=eventplatform.com\nFrom: \"Event Updates\" <updates@eventplatform.com>\nTo: user@recipient.com\nSubject: Reminder: your registration is pending\nDate: Fri, 19 Jun 2026 13:40:08 +0000\nMessage-ID: <evt-rem@outbound-mailer.eventplatform.com>\nReturn-Path: <updates@eventplatform.com>",
+    "body": "This is a reminder that your event registration is still pending. Complete your registration to secure your spot."
+  },
+  {
+    "label": "SUSPICIOUS",
+    "category": "no-auth-records-present",
+    "source": "Manually constructed — missing authentication headers entirely (ambiguous, not confirmed malicious)",
+    "headers": "Received: from legacy-mailserver.smallbiz-host.com (legacy-mailserver.smallbiz-host.com [192.0.2.201])\n\tby mx.recipient.com with ESMTP id efg123\n\tfor <user@recipient.com>; Sat, 20 Jun 2026 16:25:45 +0000 (UTC)\nFrom: \"Small Business Invoices\" <invoices@smallbiz-host.com>\nTo: user@recipient.com\nSubject: Invoice #4471 attached\nDate: Sat, 20 Jun 2026 16:25:40 +0000\nMessage-ID: <inv4471@legacy-mailserver.smallbiz-host.com>\nReturn-Path: <invoices@smallbiz-host.com>",
+    "body": "Please find attached invoice #4471 for services rendered last month. Payment is due within 30 days."
+  }
+]
