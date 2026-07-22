@@ -61,17 +61,17 @@ onAuthStateChanged(auth, async user => {
       if (sessionExpired()) {
         clearSession();
         await signOut(auth);
-        window.location.href = 'index.html?reason=expired';
+        window.location.href = '/?reason=expired';
         return;
       }
       recordActivity();
     } else if (isLogin) {
       // Already signed in  -  skip the login page
-      window.location.href = 'dashboard.html';
+      window.location.href = '/dashboard';
     }
   } else if (!user && isDashboard) {
     // Not authenticated  -  block dashboard
-    window.location.href = 'index.html';
+    window.location.href = '/';
   }
 });
 
@@ -95,7 +95,7 @@ if (isDashboard) {
     if (sessionExpired()) {
       clearSession();
       if (auth.currentUser) await signOut(auth);
-      window.location.href = 'index.html?reason=expired';
+      window.location.href = '/?reason=expired';
     }
   }, 60_000);
 }
@@ -107,7 +107,7 @@ if (isDashboard) {
 window.logoutUser = async () => {
   clearSession();
   await signOut(auth);
-  window.location.href = 'index.html';
+  window.location.href = '/';
 };
 
 // ─────────────────────────────────────────────
@@ -229,7 +229,7 @@ window.loginApp = function () {
         }
 
         recordActivity();
-        window.location.href = 'dashboard.html';
+        window.location.href = '/dashboard';
 
       } catch (err) {
         this.failedAttempts++;
@@ -284,7 +284,7 @@ window.loginApp = function () {
         if (profile) {
           // Registered user  -  sign in and go to dashboard
           recordActivity();
-          window.location.href = 'dashboard.html';
+          window.location.href = '/dashboard';
         } else {
           // No profile  -  this account has not signed up yet
           // Sign them out immediately and show a clear message
@@ -525,7 +525,7 @@ window.signupApp = function () {
         if (profile) {
           // Already registered  -  go to dashboard
           recordActivity();
-          window.location.href = 'dashboard.html';
+          window.location.href = '/dashboard';
         } else {
           // New Google user  -  collect username and country
           // Name and email come from their Google account
@@ -586,7 +586,7 @@ window.signupApp = function () {
 
         // Profile saved  -  go to dashboard
         recordActivity();
-        window.location.href = 'dashboard.html';
+        window.location.href = '/dashboard';
 
       } catch (err) {
         this.profileError = 'Network error. Please try again.';

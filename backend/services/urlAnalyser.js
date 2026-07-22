@@ -57,6 +57,34 @@ const KNOWN_BRANDS = {
   'adobe.com'       : 'Adobe',
   'github.com'      : 'GitHub',
   'stripe.com'      : 'Stripe',
+  'microsoft.com'   : 'Microsoft Corp',
+  'office365.com'   : 'Microsoft 365',
+  'outlook.com'     : 'Microsoft Outlook',
+  'amazon.co.uk'    : 'Amazon UK',
+  'apple.co.uk'     : 'Apple UK',
+  'netflix.co.uk'   : 'Netflix UK',
+  // Major legitimate domains that should never be flagged
+  'bbc.co.uk'       : 'BBC',
+  'bbc.com'         : 'BBC',
+  'itv.com'         : 'ITV',
+  'sky.com'         : 'Sky',
+  'bt.com'          : 'BT',
+  'virginmedia.com' : 'Virgin Media',
+  'vodafone.co.uk'  : 'Vodafone',
+  'o2.co.uk'        : 'O2',
+  'tesco.com'       : 'Tesco',
+  'bbc.co.uk'       : 'BBC',
+  'reuters.com'     : 'Reuters',
+  'theguardian.com' : 'The Guardian',
+  'dailymail.co.uk' : 'Daily Mail',
+  'telegraph.co.uk' : 'The Telegraph',
+  'boe.co.uk'       : 'Bank of England',
+  'wikipedia.org'   : 'Wikipedia',
+  'cloudflare.com'  : 'Cloudflare',
+  'shopify.com'     : 'Shopify',
+  'salesforce.com'  : 'Salesforce',
+  'zoom.us'         : 'Zoom',
+  'slack.com'       : 'Slack',
 };
 
 // Risky TLDs associated with abuse
@@ -205,7 +233,9 @@ function detectTyposquatting(domain) {
       const distSeg  = levenshtein(normalisedSeg, normBrand);
       const dist     = Math.min(distFull, distSeg);
 
-      if (dist <= 2 && dist > 0) {
+      const lenRatio = Math.min(normalisedFull.length, normBrand.length) /
+                       Math.max(normalisedFull.length, normBrand.length);
+      if (dist <= 2 && dist > 0 && lenRatio >= 0.6) {
         results.push({
           type      : 'typo',
           brand     : brandName,

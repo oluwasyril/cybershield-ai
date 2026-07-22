@@ -86,7 +86,11 @@ const analyseThreat = async (target, scanType, intelligenceData) => {
     // Runs AFTER the AI assessment is validated.
     // Uses the raw intelligenceData passed in.
     const intel = intelligenceData.intelligence || intelligenceData;
-    const mitre = mapToATTACK(scanType, intel);
+    let mitre = mapToATTACK(scanType, intel);
+    // Only attach MITRE techniques for non-CLEAN verdicts
+    if (assessment.verdict === 'CLEAN') {
+      mitre = { techniques: [], findings: [], tacticsSummary: [] };
+    }
     // ─────────────────────────────────────────
 
     return {
