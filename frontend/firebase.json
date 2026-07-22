@@ -8,6 +8,7 @@
       "**/node_modules/**",
       "backend/**"
     ],
+    "cleanUrls": true,
     "rewrites": [
       {
         "source": "/__/auth/action",
